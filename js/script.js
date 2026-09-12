@@ -521,6 +521,29 @@ function initCreativeLibrary() {
       closeCreativeModal();
     }
   });
+
+  // Copy Library ID to clipboard on click with visual feedback
+  const idBadges = document.querySelectorAll('.ad-id-badge');
+  idBadges.forEach(badge => {
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const rawText = badge.textContent.trim();
+      const match = rawText.match(/\d+/);
+      const textToCopy = match ? match[0] : rawText;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = badge.textContent;
+          badge.textContent = 'Copied!';
+          badge.style.color = '#22c55e';
+          setTimeout(() => {
+            badge.textContent = originalText;
+            badge.style.color = '';
+          }, 1400);
+        }).catch(() => {});
+      }
+    });
+  });
 }
 
 /* ── 10. CLIENT PROOF MODAL (UPWORK VERIFIED CONTRACT DETAILS) ── */

@@ -2536,6 +2536,22 @@ button {
   font-size: 0.7rem;
   color: var(--text-muted);
   letter-spacing: 0.03em;
+  cursor: pointer;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  user-select: all;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ad-id-badge:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .ad-id-badge:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Brand Header */
