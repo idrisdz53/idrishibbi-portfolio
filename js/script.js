@@ -494,9 +494,9 @@ function initCreativeLibrary() {
       });
     });
 
-    // Clicking image area directly opens modal
+    // Clicking image area directly opens modal (skip for video cards to allow native playback)
     const mediaContainer = card.querySelector('.ad-media-container');
-    if (mediaContainer) {
+    if (mediaContainer && !card.querySelector('.ad-media-video')) {
       mediaContainer.addEventListener('click', (e) => {
         // Prevent double open if clicking the expand button directly
         if (!e.target.closest('[data-action="view-creative"]')) {
