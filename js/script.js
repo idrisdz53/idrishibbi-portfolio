@@ -241,6 +241,19 @@ function initInquiryForm() {
 
     const customBody = bodyLines.join('\n');
 
+    if (isMobilePhone()) {
+      const mailtoUrl = `mailto:${TARGET_PORTFOLIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(customBody)}`;
+      window.location.href = mailtoUrl;
+      if (formFeedback) {
+        formFeedback.classList.add('is-visible');
+        formFeedback.innerHTML = `
+          <strong>Opening your email app...</strong><br>
+          Your inquiry draft is ready in your mail app. Hit send when ready!
+        `;
+      }
+      return;
+    }
+
     if (typeof window.openEmailModal === 'function') {
       window.openEmailModal(subject, customBody);
     }
@@ -256,6 +269,12 @@ function initInquiryForm() {
   });
 }
 
+// Helper to detect mobile phone / handheld devices
+function isMobilePhone() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+         (window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+}
+
 /* ── 8. GUIDED DIRECT EMAIL EXPERIENCE ── */
 function initEmailGuidance() {
   const modal = document.getElementById('email-guide-modal');
@@ -266,22 +285,30 @@ function initEmailGuidance() {
   const optOutlook = document.getElementById('email-opt-outlook');
   const emailTriggers = document.querySelectorAll('.guided-email-trigger');
   const copyButtons = document.querySelectorAll('.btn-copy-address, .btn-copy-email-direct');
+  const mainEmailBtn = document.getElementById('btn-open-email-main');
 
   const defaultSubject = "Performance Creative Strategy Inquiry — Idris Hibbi";
-  const defaultBody = "Hi Idris,\n\nI'm reaching out from your portfolio regarding a performance creative strategy opportunity.\n\nBest regards,";
+  const defaultBody = "Hi Idris,\n\nI came across your portfolio and I would like to discuss a performance creative strategy opportunity for my brand.\n\n• Brand / Company: \n• Monthly Ad Spend / Platform: \n• Main Creative Goal or Challenge: \n\nLooking forward to hearing from you!\n\nBest regards,";
 
   // Function to build URLs and open modal
   const openEmailModal = (subject = defaultSubject, body = defaultBody) => {
-    if (!modal) return;
-
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
+    const mailtoUrl = `mailto:${TARGET_PORTFOLIO_EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
+
+    // On phone / mobile: guide directly to native email app, never open browser or modal
+    if (isMobilePhone()) {
+      window.location.href = mailtoUrl;
+      return;
+    }
+
+    if (!modal) return;
 
     if (optGmail) {
       optGmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(TARGET_PORTFOLIO_EMAIL)}&su=${encodedSubject}&body=${encodedBody}`;
     }
     if (optClient) {
-      optClient.href = `mailto:${TARGET_PORTFOLIO_EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
+      optClient.href = mailtoUrl;
     }
     if (optOutlook) {
       optOutlook.href = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(TARGET_PORTFOLIO_EMAIL)}&subject=${encodedSubject}&body=${encodedBody}`;
@@ -317,10 +344,20 @@ function initEmailGuidance() {
   // Intercept all guided email triggers across the page
   emailTriggers.forEach(link => {
     link.addEventListener('click', (e) => {
+      if (isMobilePhone()) {
+        // On mobile phone, let the native mailto: link execute naturally to launch the email app directly
+        return;
+      }
       e.preventDefault();
       openEmailModal();
     });
   });
+
+  // Set mobile-optimized label on direct email button
+  if (mainEmailBtn && isMobilePhone()) {
+    const label = mainEmailBtn.querySelector('.btn-email-label');
+    if (label) label.textContent = 'Open in Email App \u2192';
+  }
 
   // 1-Click Copy Email Address Action
   const copyEmailToClipboard = (buttonEl) => {

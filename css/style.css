@@ -1529,12 +1529,16 @@ button {
   text-decoration: none;
 }
 
-.btn-email-gmail {
+.btn-email-gmail,
+.btn-open-email-app,
+.btn-email-app {
   background: var(--accent-gold);
   color: #111114 !important;
 }
 
-.btn-email-gmail:hover {
+.btn-email-gmail:hover,
+.btn-open-email-app:hover,
+.btn-email-app:hover {
   background: var(--accent-gold-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 14px var(--accent-gold-glow);
