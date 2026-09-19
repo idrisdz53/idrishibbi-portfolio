@@ -1,0 +1,607 @@
+/* ==========================================================================
+   IDRIS HIBBI — ARABIC RTL STYLESHEET (css/rtl.css)
+   Typography, Directional Tokens, Component Adapters & Language Switcher
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ── 1. GLOBAL ARABIC & RTL TOKENS ── */
+[dir="rtl"] {
+  --font-sans: 'IBM Plex Sans Arabic', 'Cairo', system-ui, -apple-system, sans-serif;
+  --font-name: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+  --font-display: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] body {
+  font-family: var(--font-sans);
+  direction: rtl;
+  text-align: right;
+  line-height: 1.75;
+}
+
+/* ── 2. LANGUAGE SWITCHER COMPONENT (SHARED EN/AR) ── */
+.lang-switch-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.lang-switch-wrap:hover {
+  border-color: var(--border-highlight);
+  background: var(--bg-surface);
+}
+
+.lang-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: all var(--transition-fast);
+}
+
+.lang-pill:hover {
+  color: var(--text-primary);
+}
+
+.lang-pill.is-active {
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  font-weight: 700;
+  cursor: default;
+}
+
+.lang-divider {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  opacity: 0.6;
+}
+
+/* Inside Mobile Nav Menu */
+.mobile-lang-switch {
+  display: none;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .mobile-lang-switch {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+}
+
+/* ── 3. HEADER & NAVIGATION RTL ADAPTATIONS ── */
+[dir="rtl"] .brand-logo {
+  flex-direction: row;
+}
+
+[dir="rtl"] .brand-text {
+  text-align: right;
+}
+
+[dir="rtl"] .avatar-status-dot {
+  right: auto;
+  left: -2px;
+}
+
+[dir="rtl"] .hero-avatar-status {
+  right: auto;
+  left: 2px;
+}
+
+[dir="rtl"] .nav-cta-desktop svg {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 1024px) {
+  [dir="rtl"] .nav-links {
+    align-items: stretch;
+    text-align: right;
+  }
+  
+  [dir="rtl"] .nav-link {
+    text-align: right;
+  }
+}
+
+/* ── 4. HERO SECTION RTL ── */
+[dir="rtl"] .hero-inner {
+  text-align: right;
+}
+
+[dir="rtl"] .hero-identity-badge {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .hero-identity-text {
+  text-align: right;
+}
+
+[dir="rtl"] .hero-actions {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .hero-title {
+  letter-spacing: normal;
+  line-height: 1.35;
+}
+
+/* ── 5. CASE STUDY CARDS RTL ── */
+[dir="rtl"] .case-card {
+  text-align: right;
+}
+
+[dir="rtl"] .case-card-top {
+  justify-content: space-between;
+}
+
+[dir="rtl"] .case-badge-dot {
+  margin-left: 0.45rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .case-desc-line {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+[dir="rtl"] .case-desc-line::before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .case-cta-btn svg,
+[dir="rtl"] .case-cta-btn span {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── 6. PROCESS & STRATEGY FLOW RTL ── */
+.strategy-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 900px) {
+  .strategy-flow-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.strategy-flow-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem 1.15rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-base);
+}
+
+.strategy-flow-card:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.strategy-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+}
+
+.strategy-step-name-ar {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.strategy-step-name-en {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.65rem;
+}
+
+.strategy-step-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Flow Connector Arrow */
+.flow-arrow-indicator {
+  position: absolute;
+  top: 50%;
+  left: -14px;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
+  font-size: 12px;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .flow-arrow-indicator {
+    top: auto;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-90deg);
+  }
+}
+
+/* Strategic Example Card */
+.strategy-example-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.strategy-example-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--accent-gold), var(--accent-blue));
+}
+
+.strategy-example-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.strategy-example-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.85rem;
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.strategy-example-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .strategy-example-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.strategy-example-box {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+}
+
+.strategy-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.strategy-box-val {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ── 7. COPYWRITING SECTION RTL ── */
+.copy-comparison-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.copy-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .copy-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.copy-box-generic {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+}
+
+.copy-box-strategic {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+}
+
+.copy-box-badge-bad {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.copy-box-badge-good {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.copy-box-quote {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.copy-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .copy-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .copy-pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.copy-pillar-chip {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all var(--transition-fast);
+}
+
+.copy-pillar-chip:hover {
+  border-color: var(--border-highlight);
+  background: var(--bg-surface-elevated);
+}
+
+.copy-pillar-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--accent-gold-glow);
+  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.copy-pillar-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.copy-pillar-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── 8. CREATIVE LIBRARY RTL ── */
+[dir="rtl"] .ad-meta-topbar {
+  flex-direction: row;
+}
+
+[dir="rtl"] .ad-media-container .ad-format-pill {
+  left: auto;
+  right: 0.75rem;
+}
+
+[dir="rtl"] .ad-media-container .ad-media-expand-btn {
+  right: auto;
+  left: 0.75rem;
+}
+
+[dir="rtl"] .ad-hook-box {
+  border-left: 1px solid var(--border-color);
+  border-right: 3px solid var(--accent-gold);
+}
+
+[dir="rtl"] .ad-card-actions {
+  flex-direction: row;
+}
+
+[dir="rtl"] .ad-card-actions .ad-case-link svg,
+[dir="rtl"] .case-cta-btn svg {
+  transform: scaleX(-1);
+}
+
+/* ── 9. CLIENT WORK RTL ── */
+[dir="rtl"] .client-quote-box {
+  border-left: 1px solid var(--border-color);
+  border-right: 3px solid #14a800;
+}
+
+[dir="rtl"] .client-card-header {
+  flex-direction: row;
+}
+
+[dir="rtl"] .client-endorsements-list {
+  flex-direction: row;
+}
+
+/* ── 10. ABOUT ME RTL ── */
+[dir="rtl"] .about-text-col p {
+  text-align: right;
+}
+
+[dir="rtl"] .experience-item {
+  text-align: right;
+}
+
+[dir="rtl"] .detail-row {
+  flex-direction: row;
+}
+
+/* ── 11. INQUIRY FORM RTL ── */
+[dir="rtl"] .form-input,
+[dir="rtl"] .form-textarea,
+[dir="rtl"] .form-select {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .form-select {
+  background-position: left 1rem center;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+}
+
+[dir="rtl"] .btn-inquiry-submit svg {
+  margin-left: 0.5rem;
+  margin-right: 0;
+  transform: scaleX(-1);
+}
+
+/* ── 12. MODALS RTL ── */
+[dir="rtl"] .email-modal-close,
+[dir="rtl"] .client-modal-close,
+[dir="rtl"] .creative-modal-close {
+  right: auto;
+  left: 1.25rem;
+}
+
+[dir="rtl"] .client-modal-header {
+  padding-right: 0;
+  padding-left: 3.5rem;
+}
+
+[dir="rtl"] .client-modal-quote-card {
+  border-left: 1px solid var(--border-color);
+  border-right: 3px solid #14a800;
+}
+
+[dir="rtl"] .modal-hook-box {
+  border-left: 1px solid var(--border-color);
+  border-right: 4px solid var(--accent-gold);
+}
+
+[dir="rtl"] .creative-modal-media-pane {
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+}
+
+@media (max-width: 992px) {
+  [dir="rtl"] .creative-modal-media-pane {
+    border-left: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+[dir="rtl"] .email-modal-btn svg.email-btn-arrow {
+  transform: scaleX(-1);
+}
+
+/* ── 13. FOOTER RTL ── */
+[dir="rtl"] .footer-bottom {
+  flex-direction: row;
+}
+
+[dir="rtl"] .back-to-top {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+[dir="rtl"] .back-to-top span {
+  display: inline-flex;
+  align-items: center;
+}
