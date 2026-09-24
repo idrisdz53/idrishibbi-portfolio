@@ -616,7 +616,13 @@ button {
 }
 
 .hero-inner {
-  max-width: 900px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-identity-badge {
@@ -737,7 +743,7 @@ button {
   box-shadow: 0 0 6px #10b981;
 }
 
-/* Main Core Headline: "I turn customer insights into ads worth testing." */
+/* Main Core Headline: "I turn customer research into ads that convert" */
 .hero-headline {
   font-family: var(--font-name);
   font-size: clamp(2.85rem, 6.5vw, 5.2rem);
@@ -746,6 +752,10 @@ button {
   letter-spacing: -0.03em;
   color: var(--text-primary);
   margin-bottom: 1.5rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .hero-headline span {
@@ -759,6 +769,9 @@ button {
   line-height: 1.6;
   margin-bottom: 2rem;
   max-width: 740px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Core Pillars Strip */
@@ -767,6 +780,7 @@ button {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 2.75rem;
+  justify-content: center;
 }
 
 .pillar-pill {
@@ -782,21 +796,25 @@ button {
 .hero-cta-group {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 /* Hero Quick Contact Bar */
 .hero-contact-inline {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.75rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border-color);
   font-size: 0.88rem;
   color: var(--text-muted);
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .inline-contact-item {
@@ -2040,7 +2058,8 @@ button {
 
   .hero-contact-inline {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 0.75rem;
   }
 }
