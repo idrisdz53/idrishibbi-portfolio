@@ -5,7 +5,7 @@
 
 /* ── 1. FONTS & DESIGN TOKENS ── */
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=cabinet-grotesk@500,700,800,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   /* Default: DARK MODE */
@@ -48,6 +48,7 @@
   --font-name: 'Clash Display', 'Cabinet Grotesk', sans-serif;
   --font-display: 'Cabinet Grotesk', 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
 
   /* Sizing & Layout */
   --container-max-width: 1200px;
@@ -760,6 +761,28 @@ button {
 
 .hero-headline span {
   color: var(--accent-gold);
+}
+
+.hero-headline .headline-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.86em;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+  background: linear-gradient(180deg, transparent 62%, var(--accent-gold-glow) 62%);
+  border-bottom: 2px solid var(--accent-gold);
+  padding: 0 0.14em;
+  border-radius: 3px;
+}
+
+.hero-headline .headline-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.18em;
+  letter-spacing: 0.01em;
+  color: var(--accent-gold);
+  padding-right: 0.05em;
 }
 
 /* Supporting copy */
