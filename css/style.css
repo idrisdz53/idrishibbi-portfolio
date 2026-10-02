@@ -744,45 +744,61 @@ button {
   box-shadow: 0 0 6px #10b981;
 }
 
-/* Main Core Headline: "I turn customer research into ads that convert" */
+/* Main Core Headline: "Most ads die in 200 milliseconds. I mine customer psychology to build concepts that survive the audition." */
 .hero-headline {
   font-family: var(--font-name);
-  font-size: clamp(2.85rem, 6.5vw, 5.2rem);
+  font-size: clamp(2.35rem, 5vw, 4.1rem);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.14;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  max-width: 1040px;
 }
 
-.hero-headline span {
-  color: var(--accent-gold);
+.hero-headline .headline-line-1 {
+  display: inline-block;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.hero-headline .headline-line-2 {
+  display: inline-block;
+  color: var(--text-primary);
 }
 
 .hero-headline .headline-mono {
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.86em;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
   background: linear-gradient(180deg, transparent 62%, var(--accent-gold-glow) 62%);
   border-bottom: 2px solid var(--accent-gold);
-  padding: 0 0.14em;
+  padding: 0 0.16em;
   border-radius: 3px;
+  white-space: nowrap;
+}
+
+.hero-headline .headline-accent {
+  color: var(--accent-gold);
+  font-weight: 700;
+  display: inline-block;
 }
 
 .hero-headline .headline-serif {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.18em;
+  font-size: 1.15em;
   letter-spacing: 0.01em;
   color: var(--accent-gold);
-  padding-right: 0.05em;
+  padding-right: 0.06em;
+  display: inline-block;
 }
 
 /* Supporting copy */
@@ -3800,5 +3816,22 @@ button {
     justify-content: center;
   }
 }
+
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: clamp(1.85rem, 6.2vw, 2.35rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-headline .headline-mono {
+    font-size: 0.88em;
+  }
+
+  .hero-headline .headline-serif {
+    font-size: 1.1em;
+  }
+}
+
 
 
