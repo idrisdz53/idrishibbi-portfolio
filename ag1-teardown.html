@@ -1,0 +1,3504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AG1 Deep Creative Strategy Teardown &amp; Ad Analysis | Idris Hibbi</title>
+  <meta name="description" content="In-depth Performance Creative Strategy Teardown of AG1 (Athletic Greens). Meta Ad Library audit, customer voice analysis, angle mapping, creative fatigue diagnosis, and 5 fresh testing concepts.">
+  <link rel="icon" type="image/jpeg" href="assets/idris-hibbi.jpg">
+  
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ══════════════════════════════════════════════════════════════════
+       AG1 DEEP TEARDOWN — NEO-BRUTALIST PERFORMANCE STYLESHEET
+       Design System Reference: Gymshark Teardown (High-Contrast Editorial)
+       ══════════════════════════════════════════════════════════════════ */
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f5f5f0;
+      --bg-card: #ffffff;
+      --black: #000000;
+      --white: #ffffff;
+      
+      /* AG1 Specific Brand Palette */
+      --ag1-emerald: #00e676;
+      --ag1-emerald-dark: #00a854;
+      --ag1-emerald-light: rgba(0, 230, 118, 0.22);
+      --ag1-forest: #0a2e20;
+      --ag1-forest-dark: #051a12;
+      
+      /* Signals & Diagnostic Accents */
+      --alert-warn: #ff4757;
+      --alert-amber: #f59e0b;
+      --border-thick: 2.5px solid #000000;
+      --shadow-hard: 4px 4px 0px 0px #000000;
+      --shadow-hard-lg: 6px 6px 0px 0px #000000;
+      
+      /* Typography */
+      --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--black);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--ag1-emerald);
+      color: var(--black);
+    }
+
+    .mono {
+      font-family: var(--font-mono) !important;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Utility Helpers */
+    .border-b-thick { border-bottom: var(--border-thick); }
+    .border-t-thick { border-top: var(--border-thick); }
+    .border-r-thick { border-right: var(--border-thick); }
+    .border-l-thick { border-left: var(--border-thick); }
+    .border-all-thick { border: var(--border-thick); }
+
+    /* ── 1. TOP GLOBAL TICKER & HEADER ── */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      width: 100%;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .top-bar-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      border-right: var(--border-thick);
+    }
+
+    .brand-logo-pill {
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logo-pill .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--ag1-emerald);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .brand-edition-tag {
+      padding: 12px 18px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .ticker-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      flex-shrink: 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border: 1.5px solid var(--black);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--white);
+      white-space: nowrap;
+    }
+
+    .status-pill.emerald {
+      background: var(--ag1-emerald);
+      color: var(--black);
+    }
+
+    .status-pill.warn {
+      background: #ffebee;
+      color: var(--alert-warn);
+      border-color: var(--alert-warn);
+    }
+
+    .status-pill .sub-txt {
+      font-weight: 400;
+      opacity: 0.65;
+      font-size: 10px;
+    }
+
+    .live-rec-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 12px;
+      border-left: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .top-bar-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .back-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--black);
+      color: var(--white);
+      padding: 6px 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--black);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .back-btn-pill:hover {
+      background: var(--ag1-emerald);
+      color: var(--black);
+    }
+
+    /* ── 2. STICKY SUB-NAVIGATION ── */
+    .smart-nav {
+      position: sticky;
+      top: 48px;
+      z-index: 950;
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      width: 100%;
+    }
+
+    .smart-nav-inner {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .smart-nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tab {
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      border-right: 1.5px solid rgba(0,0,0,0.15);
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-tab .tab-num {
+      opacity: 0.5;
+      font-size: 10px;
+    }
+
+    .nav-tab:hover {
+      background: var(--bg-alt);
+    }
+
+    .nav-tab.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .nav-tab.active .tab-num {
+      color: var(--ag1-emerald);
+      opacity: 1;
+    }
+
+    /* ── 3. HERO SECTION ── */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 12fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 7fr 5fr;
+      }
+    }
+
+    .hero-content-col {
+      padding: clamp(2rem, 5vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .hero-content-col {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .insight-badge {
+      background: var(--ag1-emerald);
+      border: 1.5px solid var(--black);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      opacity: 0.6;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title .italic-sub {
+      display: block;
+      font-style: italic;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: -0.02em;
+      color: #333333;
+    }
+
+    .hero-title .highlight-pill {
+      display: inline-block;
+      background: var(--ag1-emerald);
+      border: var(--border-thick);
+      padding: 2px 14px;
+      line-height: 0.95;
+      transform: rotate(-1deg);
+      margin-top: 4px;
+    }
+
+    .hero-subhead {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 500;
+      line-height: 1.45;
+      color: #222222;
+      max-width: 44ch;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-meta-strip {
+      background: var(--bg-alt);
+      border: 1.5px solid var(--black);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .hero-meta-label {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .hero-chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .hero-chip {
+      border: 1.5px solid var(--black);
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      background: var(--white);
+    }
+
+    .hero-chip.dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .hero-chip.emerald {
+      background: var(--ag1-emerald);
+      color: var(--black);
+    }
+
+    /* Hero Right Side: Media Box & Big Takeaway */
+    .hero-media-col {
+      background: var(--bg-alt);
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .loom-preview-box {
+      border: var(--border-thick);
+      background: var(--black);
+      aspect-ratio: 16/10;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      color: var(--white);
+      box-shadow: var(--shadow-hard);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .loom-preview-box:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-hard-lg);
+    }
+
+    .loom-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+    }
+
+    .loom-header-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+    }
+
+    .loom-center-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 74px;
+      height: 74px;
+      background: var(--ag1-emerald);
+      border: var(--border-thick);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 4px 4px 0px 0px #000000;
+    }
+
+    .play-triangle {
+      width: 0;
+      height: 0;
+      border-left: 18px solid #000000;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      margin-left: 4px;
+    }
+
+    .loom-footer-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .loom-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .loom-progress-fill {
+      height: 100%;
+      width: 44%;
+      background: var(--ag1-emerald);
+    }
+
+    /* The Big Takeaway Card */
+    .big-takeaway-card {
+      border: var(--border-thick);
+      background: var(--white);
+      padding: 24px;
+      box-shadow: var(--shadow-hard);
+      position: relative;
+    }
+
+    .takeaway-badge-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #000000;
+    }
+
+    .takeaway-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: var(--white);
+      padding: 3px 8px;
+    }
+
+    .takeaway-quote {
+      font-size: 14.5px;
+      line-height: 1.5;
+      font-weight: 600;
+      color: #111111;
+      margin-bottom: 14px;
+    }
+
+    .takeaway-shift-box {
+      background: var(--bg-alt);
+      border: 1.5px solid var(--black);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .shift-from {
+      color: #666666;
+      text-decoration: line-through;
+    }
+
+    .shift-to {
+      font-weight: 700;
+      color: #000000;
+    }
+
+    /* ── 4. SECTION STRUCTURAL FRAMEWORK ── */
+    .teardown-section {
+      border-bottom: var(--border-thick);
+      background: var(--white);
+    }
+
+    .section-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-header-bar.dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .section-num-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-header-meta {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+    }
+
+    /* ── 5. SECTION: EXECUTIVE SUMMARY (KEY FINDINGS) ── */
+    .exec-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 768px) {
+      .exec-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .exec-summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .exec-finding-card {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      border-bottom: var(--border-thick);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--white);
+      transition: background-color 0.15s ease;
+    }
+
+    @media (min-width: 768px) {
+      .exec-finding-card:nth-child(odd) {
+        border-right: var(--border-thick);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .exec-finding-card:nth-child(odd) {
+        border-right: none;
+      }
+      .exec-finding-card {
+        border-right: var(--border-thick);
+      }
+      .exec-finding-card:nth-child(3n) {
+        border-right: none;
+      }
+    }
+
+    .exec-finding-card:hover {
+      background: var(--bg-alt);
+    }
+
+    .finding-num {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      margin-bottom: 1rem;
+      color: var(--black);
+    }
+
+    .finding-headline {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .finding-desc {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .finding-badge {
+      display: inline-block;
+      margin-top: 1.25rem;
+      padding: 3px 8px;
+      border: 1px solid var(--black);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--white);
+    }
+
+    /* ── 6. SECTION: RESEARCH & META AD LIBRARY ── */
+    .ad-library-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .ad-library-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .ad-card {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      display: flex;
+      flex-direction: column;
+      border-bottom: var(--border-thick);
+      background: var(--white);
+    }
+
+    @media (min-width: 992px) {
+      .ad-card {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+      .ad-card:last-child {
+        border-right: none;
+      }
+    }
+
+    .ad-visual-mock {
+      border: var(--border-thick);
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--bg-alt);
+      box-shadow: var(--shadow-hard);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mock-topbar {
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .mock-center-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .mock-type-tag {
+      background: var(--black);
+      color: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 3px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .mock-footer-strip {
+      background: var(--black);
+      color: var(--white);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+
+    .ad-info-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ad-meta-id-strip {
+      font-size: 11px;
+      color: #666666;
+      line-height: 1.4;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .ad-hook-quote {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+      padding-left: 12px;
+      border-left: 3px solid var(--black);
+    }
+
+    .ad-attributes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .ad-attributes-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .ad-attributes-list li::before {
+      content: "↳";
+      font-weight: 700;
+      color: var(--ag1-emerald-dark);
+    }
+
+    /* ── 7. SECTION: LONGEVITY & SURVIVAL TIMELINE ── */
+    .longevity-banner {
+      background: var(--ag1-forest);
+      color: var(--white);
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .longevity-banner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .longevity-timeline-wrap {
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .timeline-title-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      color: var(--ag1-emerald);
+    }
+
+    .timeline-bar-frame {
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1.5px solid var(--white);
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-bar-fill {
+      height: 100%;
+      width: 78%;
+      background: var(--ag1-emerald);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-labels-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      opacity: 0.75;
+    }
+
+    /* ── 8. SECTION: CUSTOMER LANGUAGE (VOICE OF CUSTOMER) ── */
+    .filter-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--bg-alt);
+      border-bottom: var(--border-thick);
+      overflow-x: auto;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      border: 1.5px solid var(--black);
+      background: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .filter-btn.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .customer-quotes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 768px) {
+      .customer-quotes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .customer-quotes-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .quote-card {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      border-bottom: var(--border-thick);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .quote-card {
+        border-right: var(--border-thick);
+      }
+      .quote-card:nth-child(2n) {
+        border-right: none;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .quote-card:nth-child(2n) {
+        border-right: var(--border-thick);
+      }
+      .quote-card:nth-child(3n) {
+        border-right: none;
+      }
+    }
+
+    .quote-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quote-category-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--black);
+      background: var(--bg-alt);
+    }
+
+    .quote-category-tag.pain { background: #ffebee; color: #c62828; }
+    .quote-category-tag.desire { background: #e8f5e9; color: #2e7d32; }
+    .quote-category-tag.objection { background: #fff3e0; color: #e65100; }
+    .quote-category-tag.belief { background: #e3f2fd; color: #1565c0; }
+
+    .quote-body-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: #111111;
+      font-style: italic;
+    }
+
+    .quote-source-label {
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    /* Language to Steal Bar */
+    .steal-language-bar {
+      padding: 16px clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--ag1-emerald);
+      border-bottom: var(--border-thick);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .steal-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-right: 6px;
+    }
+
+    .steal-pill {
+      background: var(--white);
+      border: 1.5px solid var(--black);
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── 9. SECTION: THE BIGGEST OBJECTION BREAKDOWN ── */
+    .objection-breakdown-section {
+      background: var(--bg-alt);
+      padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+      border-bottom: var(--border-thick);
+    }
+
+    .objection-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      border: var(--border-thick);
+      background: var(--white);
+      box-shadow: var(--shadow-hard-lg);
+    }
+
+    .objection-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 24px;
+      border-bottom: var(--border-thick);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .objection-main-statement {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      padding: 24px;
+      border-bottom: var(--border-thick);
+      background: #fff8f8;
+      color: #b91c1c;
+    }
+
+    .objection-flow-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 768px) {
+      .objection-flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .objection-flow-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .objection-step-col {
+      padding: 20px;
+      border-bottom: var(--border-thick);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--white);
+    }
+
+    @media (min-width: 768px) {
+      .objection-step-col {
+        border-right: var(--border-thick);
+      }
+      .objection-step-col:nth-child(2n) {
+        border-right: none;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .objection-step-col:nth-child(2n) {
+        border-right: var(--border-thick);
+      }
+      .objection-step-col:last-child {
+        border-right: none;
+        background: #f0fdf4;
+      }
+    }
+
+    .step-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .step-body {
+      font-size: 12.5px;
+      color: #374151;
+      line-height: 1.45;
+    }
+
+    /* ── 10. SECTION: HOOK AUDIT (3-CARD GRID) ── */
+    .hook-audit-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .hook-audit-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .hook-audit-card {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      border-bottom: var(--border-thick);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 992px) {
+      .hook-audit-card {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+      .hook-audit-card:last-child {
+        border-right: none;
+      }
+    }
+
+    .hook-number-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .hook-text-box {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      padding: 12px 14px;
+      background: var(--bg-alt);
+      border: 1.5px solid var(--black);
+    }
+
+    .hook-type-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--black);
+      background: var(--white);
+    }
+
+    .hook-type-pill.warn {
+      background: #ffebee;
+      color: var(--alert-warn);
+      border-color: var(--alert-warn);
+    }
+
+    .hook-audit-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .field-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    .field-desc {
+      color: #222222;
+      line-height: 1.45;
+    }
+
+    .field-desc.fatigue-callout {
+      border-left: 3px solid var(--alert-warn);
+      padding-left: 8px;
+      background: #fff8f8;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    .field-desc.opportunity-callout {
+      border-left: 3px solid var(--ag1-emerald-dark);
+      padding-left: 8px;
+      background: #f0fdf4;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    /* ── 11. SECTION: 4-BOX ANGLE MAP ── */
+    .angle-map-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .angle-map-wrapper {
+        grid-template-columns: 5fr 7fr;
+      }
+    }
+
+    .angle-map-intro-pane {
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+      border-bottom: var(--border-thick);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 992px) {
+      .angle-map-intro-pane {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+    }
+
+    .angle-map-lead-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin: 1.5rem 0;
+    }
+
+    .quadrant-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: var(--white);
+    }
+
+    @media (min-width: 640px) {
+      .quadrant-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .quadrant-card {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      border-bottom: var(--border-thick);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 640px) {
+      .quadrant-card:nth-child(1),
+      .quadrant-card:nth-child(3) {
+        border-right: var(--border-thick);
+      }
+      .quadrant-card:nth-child(3),
+      .quadrant-card:nth-child(4) {
+        border-bottom: none;
+      }
+    }
+
+    .quadrant-card.saturated {
+      background: #fdfae5;
+    }
+
+    .quadrant-card.opportunity {
+      background: #f0fdf4;
+    }
+
+    .quadrant-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .quadrant-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .dot-matrix-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .matrix-dot {
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      border: 1.5px solid var(--black);
+    }
+
+    .matrix-dot.filled {
+      background: var(--black);
+    }
+
+    .matrix-dot.empty {
+      background: var(--white);
+    }
+
+    .quadrant-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .quadrant-bullets li {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .quadrant-bullets li::before {
+      content: "•";
+      color: var(--black);
+      font-weight: bold;
+    }
+
+    /* ── 12. SECTION: CREATIVE GAPS (WHAT AG1 IS NOT SHOWING) ── */
+    .gaps-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .gaps-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .gap-card {
+      padding: clamp(1.75rem, 3.5vw, 2.75rem);
+      border-bottom: var(--border-thick);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      transition: background-color 0.15s ease;
+    }
+
+    @media (min-width: 992px) {
+      .gap-card {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+      .gap-card:last-child {
+        border-right: none;
+      }
+    }
+
+    .gap-card:hover {
+      background: var(--bg-alt);
+    }
+
+    .gap-num-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .gap-num {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+    }
+
+    .gap-icon-badge {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--black);
+      border-radius: 50%;
+      background: var(--ag1-emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .gap-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .gap-step-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      border-top: 1.5px solid rgba(0,0,0,0.1);
+      padding-top: 12px;
+    }
+
+    .gap-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    .gap-val {
+      line-height: 1.45;
+    }
+
+    /* ── 13. SECTION: 5 FRESH CONCEPTS (READY TO SHOOT) ── */
+    .concepts-list-wrap {
+      display: flex;
+      flex-direction: column;
+      border-bottom: var(--border-thick);
+    }
+
+    .concept-item-row {
+      display: grid;
+      grid-template-columns: 12fr;
+      border-bottom: var(--border-thick);
+      background: var(--white);
+      transition: background-color 0.15s ease;
+    }
+
+    .concept-item-row:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 768px) {
+      .concept-item-row {
+        grid-template-columns: 1.2fr 10.8fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .concept-item-row {
+        grid-template-columns: 1fr 11fr;
+      }
+    }
+
+    .concept-item-row:hover {
+      background: #f7fff9;
+    }
+
+    .concept-num-col {
+      padding: clamp(1rem, 2vw, 1.5rem);
+      border-bottom: var(--border-thick);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-alt);
+    }
+
+    @media (min-width: 768px) {
+      .concept-num-col {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+    }
+
+    .concept-big-num {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .concept-details-col {
+      padding: clamp(1.25rem, 3vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .concept-header-strip {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .concept-angle-pill {
+      padding: 3px 10px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .concept-hook-headline {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .concept-specs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      border-top: 1.5px solid rgba(0,0,0,0.1);
+      padding-top: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .concept-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .concept-specs-grid {
+        grid-template-columns: 1.2fr 1.2fr 1fr 1fr;
+      }
+    }
+
+    .spec-block {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 12px;
+    }
+
+    .spec-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666666;
+    }
+
+    .spec-val {
+      line-height: 1.4;
+      color: #111111;
+    }
+
+    .copy-hook-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1.5px solid var(--black);
+      background: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px 0px #000;
+      transition: all 0.15s ease;
+    }
+
+    .copy-hook-btn:hover {
+      background: var(--ag1-emerald);
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px 0px #000;
+    }
+
+    /* ── 14. SECTION: THE CREATIVE SYSTEM FRAMEWORK ── */
+    .system-framework-section {
+      padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--bg-alt);
+      border-bottom: var(--border-thick);
+    }
+
+    .system-chain-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .system-chain-row {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .system-step-box {
+      border: var(--border-thick);
+      background: var(--white);
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-hard);
+    }
+
+    .system-step-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ag1-emerald-dark);
+    }
+
+    .system-step-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .system-step-desc {
+      font-size: 11px;
+      color: #4b5563;
+      line-height: 1.35;
+    }
+
+    /* ── 15. SECTION: WHAT I WOULD TEST FIRST (ROADMAP) ── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 992px) {
+      .roadmap-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .roadmap-card {
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      border-bottom: var(--border-thick);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (min-width: 992px) {
+      .roadmap-card {
+        border-bottom: none;
+        border-right: var(--border-thick);
+      }
+      .roadmap-card:last-child {
+        border-right: none;
+      }
+    }
+
+    .rank-pill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rank-num-badge {
+      background: var(--black);
+      color: var(--white);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .rank-priority-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--black);
+      background: var(--ag1-emerald);
+    }
+
+    .roadmap-title {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .roadmap-rationale {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #374151;
+    }
+
+    /* ── 16. SECTION: FINAL EDITORIAL TAKEAWAY & FOOTER ── */
+    .takeaway-editorial-section {
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3.5rem);
+      background: var(--white);
+      border-bottom: var(--border-thick);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .editorial-quote-massive {
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 32ch;
+      margin: 1.5rem 0;
+    }
+
+    .editorial-quote-massive em {
+      font-style: italic;
+      color: var(--ag1-emerald-dark);
+      border-bottom: 2px solid var(--black);
+    }
+
+    .takeaway-vector-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .vector-step {
+      padding: 6px 14px;
+      border: 1.5px solid var(--black);
+      background: var(--bg-alt);
+    }
+
+    .vector-step.active {
+      background: var(--ag1-emerald);
+      color: var(--black);
+    }
+
+    .footer-action-strip {
+      padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      border-bottom: var(--border-thick);
+    }
+
+    @media (min-width: 768px) {
+      .footer-action-strip {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--ag1-emerald);
+      color: var(--black);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--white);
+      box-shadow: 4px 4px 0px 0px var(--white);
+      transition: all 0.15s ease;
+    }
+
+    .footer-cta-btn:hover {
+      background: var(--white);
+      color: var(--black);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px 0px var(--ag1-emerald);
+    }
+
+    /* Toast Notification for Clipboard Copy */
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--black);
+      color: var(--ag1-emerald);
+      border: 2px solid var(--ag1-emerald);
+      padding: 10px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      z-index: 9999;
+      box-shadow: 4px 4px 0px 0px #000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-pill.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       00 — TOP GLOBAL TICKER BAR
+       ══════════════════════════════════════════════════════════════════ -->
+  <header class="top-bar" role="banner">
+    <div class="top-bar-inner">
+      
+      <!-- Brand & Project Identity -->
+      <div class="brand-block">
+        <a href="index.html#work" class="brand-logo-pill" title="Return to Idris Hibbi Portfolio">
+          <span class="badge-dot"></span>
+          <span>AG1 TEARDOWN</span>
+        </a>
+        <span class="brand-edition-tag mono">PERFORMANCE STRATEGY &bull; OCT 2026</span>
+      </div>
+
+      <!-- Quick Ticker Metrics -->
+      <div class="ticker-pills-row mono">
+        <div class="status-pill">
+          <span>214+ ADS</span>
+          <span class="sub-txt">AUDITED</span>
+        </div>
+        <div class="status-pill emerald">
+          <span>7+ MO SURVIVAL</span>
+          <span class="sub-txt">OBSERVED</span>
+        </div>
+        <div class="status-pill warn">
+          <span>3 HOOKS</span>
+          <span class="sub-txt">FATIGUING</span>
+        </div>
+        <div class="status-pill">
+          <span>3 GAPS</span>
+          <span class="sub-txt">DIAGNOSED</span>
+        </div>
+        <div class="status-pill emerald">
+          <span>5 CONCEPTS</span>
+          <span class="sub-txt">READY TO SHOOT</span>
+        </div>
+        <div class="live-rec-badge">
+          <span class="pulse-dot"></span>
+          <span class="status-pill dark" style="background:#000;color:#fff;">90-SEC LOOM</span>
+        </div>
+      </div>
+
+      <!-- Right Actions: Read Duration & Portfolio Link -->
+      <div class="top-bar-right mono">
+        <span style="opacity:0.6;">3-MIN SCAN &bull; FOR HEAD OF GROWTH</span>
+        <a href="/index.html#work" class="back-btn-pill">
+          <span>&larr; PORTFOLIO</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SMART STICKY NAVIGATION
+       ══════════════════════════════════════════════════════════════════ -->
+  <nav class="smart-nav" aria-label="Teardown Sections">
+    <div class="smart-nav-inner mono" id="smartNav">
+      <a href="#hero" class="nav-tab active"><span class="tab-num">00</span> Overview</a>
+      <a href="#exec-summary" class="nav-tab"><span class="tab-num">01</span> Key Findings</a>
+      <a href="#ad-library" class="nav-tab"><span class="tab-num">02</span> Ad Library</a>
+      <a href="#longevity" class="nav-tab"><span class="tab-num">03</span> Survival</a>
+      <a href="#customer-voice" class="nav-tab"><span class="tab-num">04</span> Customer Voice</a>
+      <a href="#objection" class="nav-tab"><span class="tab-num">05</span> $100 Objection</a>
+      <a href="#hook-audit" class="nav-tab"><span class="tab-num">06</span> Hook Audit</a>
+      <a href="#angle-map" class="nav-tab"><span class="tab-num">07</span> Angle Map</a>
+      <a href="#creative-gaps" class="nav-tab"><span class="tab-num">08</span> Gaps</a>
+      <a href="#new-concepts" class="nav-tab"><span class="tab-num">09</span> 5 Concepts</a>
+      <a href="#system" class="nav-tab"><span class="tab-num">10</span> Creative System</a>
+      <a href="#roadmap" class="nav-tab"><span class="tab-num">11</span> Test Roadmap</a>
+      <a href="#takeaway" class="nav-tab"><span class="tab-num">12</span> Recommendation</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       HERO: STRATEGIC INSIGHT & TEARDOWN PREVIEW
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero-grid">
+    
+    <!-- Left Column: Big Statement & Narrative -->
+    <div class="hero-content-col">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="insight-badge mono">INSIGHT #1</span>
+          <span class="eyebrow-text mono">AG1 CREATIVE SYSTEM SCAN</span>
+          <span class="status-pill emerald mono" style="font-size:10px;">OCTOBER 2026 INTEL</span>
+        </div>
+
+        <h1 class="hero-title">
+          Most AG1 ads
+          <span class="italic-sub">sell authority.</span>
+          They forgot to
+          <span class="highlight-pill">sell mechanism.</span>
+        </h1>
+
+        <p class="hero-subhead">
+          How AG1 sells a daily health ritual — and where its creative system is starting to show acute fatigue after 7+ months of continuous rotation.
+        </p>
+
+        <!-- Rigorous Research Metadata -->
+        <div class="hero-meta-strip mono">
+          <div class="hero-meta-row">
+            <span class="hero-meta-label">Audit Date:</span>
+            <span>October 2026</span>
+            <span style="opacity:0.4;">|</span>
+            <span class="hero-meta-label">Audited Platform:</span>
+            <span>Meta Ad Library (page_id: 183869772601)</span>
+          </div>
+          <div class="hero-meta-row">
+            <span class="hero-meta-label">Data Sources:</span>
+            <span>Meta Ads, Amazon Verified Reviews, Reddit (r/AthleticGreens, r/Biohackers), TikTok, drinkag1.com</span>
+          </div>
+          <div class="hero-meta-row">
+            <span class="hero-meta-label">Lead Strategist:</span>
+            <span>Idris Hibbi &bull; Performance Creative Strategist</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tactical Diagnosis Tags -->
+      <div class="hero-chips-wrap mono">
+        <div class="hero-chip dark">AUTHORITY OVERLOAD: 68% OF DETECTED SPEND</div>
+        <div class="hero-chip emerald">MECHANISM GAP = CONVERSION LEAK</div>
+        <div class="hero-chip">PRICE/VALUE OBJECTION UNTOUCHED</div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Video Preview & Big Takeaway -->
+    <div class="hero-media-col">
+      
+      <!-- Video / Loom Placeholder Box -->
+      <div class="loom-preview-box" id="loomPreviewTrigger" title="Play Teardown Summary Walkthrough">
+        <div class="loom-grid-bg"></div>
+        <div class="loom-header-row mono">
+          <span style="background:#000;border:1px solid rgba(255,255,255,0.3);padding:2px 8px;">LOOM &bull; 1:30</span>
+          <span style="opacity:0.6;">OCT 2026 REC</span>
+        </div>
+
+        <div class="loom-center-play">
+          <div class="play-triangle"></div>
+        </div>
+
+        <div class="loom-footer-content">
+          <div class="mono" style="color:var(--ag1-emerald);font-size:11px;font-weight:700;margin-bottom:4px;letter-spacing:0.12em;">
+            TEARDOWN WALKTHROUGH
+          </div>
+          <div style="font-size:22px;font-weight:800;line-height:1;text-transform:uppercase;letter-spacing:-0.02em;">
+            3 HOOKS TIRED.<br>
+            3 GAPS OPEN.<br>
+            5 CONCEPTS READY TO TEST.
+          </div>
+        </div>
+
+        <div class="loom-progress-bar">
+          <div class="loom-progress-fill"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;font-weight:700;" class="mono">
+        <span>Click to scan summary &bull; Pure signal</span>
+        <span style="text-decoration:underline;cursor:pointer;">90-SEC BRIEFING &rarr;</span>
+      </div>
+
+      <!-- THE BIG TAKEAWAY -->
+      <div class="big-takeaway-card">
+        <div class="takeaway-badge-strip">
+          <span class="takeaway-tag mono">THE BIG TAKEAWAY</span>
+          <span class="mono" style="font-size:10px;opacity:0.6;">EXECUTIVE SYNTHESIS</span>
+        </div>
+
+        <p class="takeaway-quote">
+          AG1 possesses unmatched authority, social proof, and ingredient density, but its creative engine leans heavily into familiar clinical claims, celebrity endorsements, and benefit stacking.
+        </p>
+
+        <div class="takeaway-shift-box mono">
+          <div class="shift-from">&cross; Current Framing: "Trust us because we're credible and 75 ingredients strong."</div>
+          <div class="shift-to">&check; Required Opportunity: "Here's the cellular problem &rarr; here's what's actually starving inside &rarr; here's the biological mechanism that fixes it."</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       01 — EXECUTIVE SUMMARY: 6 KEY FINDINGS
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="exec-summary" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">01 / EXECUTIVE SUMMARY — 6 STRATEGIC FINDINGS</h2>
+      <span class="section-header-meta mono">[ SOURCE FINDINGS &amp; STRATEGIC INTERPRETATION ]</span>
+    </div>
+
+    <div class="exec-summary-grid">
+      
+      <!-- Finding 01 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">01</div>
+          <h3 class="finding-headline">Authority Is Strong, But Reaching Saturation</h3>
+          <p class="finding-desc">
+            Decade-long associations with Tim Ferriss, Andrew Huberman, and A-list endorsers like Hugh Jackman establish pristine baseline trust. However, celebrity endorsements alone no longer convert price-sensitive fence-sitters in late 2026.
+          </p>
+        </div>
+        <span class="finding-badge mono">SATURATED LEVER</span>
+      </div>
+
+      <!-- Finding 02 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">02</div>
+          <h3 class="finding-headline">Simple Ritual, Abstract Physiological Benefit</h3>
+          <p class="finding-desc">
+            The physical habit (1 scoop + water + shaker bottle in a clean kitchen) is instantly understandable, but the physiological promise remains abstract. Consumers are told they will "thrive", but rarely shown how it works inside the body.
+          </p>
+        </div>
+        <span class="finding-badge mono">CREATIVE FRICTION</span>
+      </div>
+
+      <!-- Finding 03 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">03</div>
+          <h3 class="finding-headline">Clinical Claims Are Showing Fatigue After 7+ Months</h3>
+          <p class="finding-desc">
+            The primary Meta Ad Library creative cluster ("clinically shown to fill nutrient gaps") has run continuously since Feb 24, 2026. Without a fresh visual demonstration or mechanism reveal, audiences have developed ad blindness to the green scoop.
+          </p>
+        </div>
+        <span class="finding-badge mono" style="color:var(--alert-warn);border-color:var(--alert-warn);">7+ MONTH FATIGUE</span>
+      </div>
+
+      <!-- Finding 04 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">04</div>
+          <h3 class="finding-headline">Price/Value Is The #1 Unaddressed Objection</h3>
+          <p class="finding-desc">
+            Across Reddit, TikTok, and reviews, the dominant customer hurdle is identical: <em>"$80–$100/month for an overpriced multivitamin / expensive pee."</em> AG1's current ad library completely ignores this objection instead of reframing it.
+          </p>
+        </div>
+        <span class="finding-badge mono" style="background:#fff3e0;color:#e65100;">#1 CONVERSION HURDLE</span>
+      </div>
+
+      <!-- Finding 05 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">05</div>
+          <h3 class="finding-headline">Biological Mechanism Demos Are The Biggest Wedge</h3>
+          <p class="finding-desc">
+            While competitor greens powders battle over taste, AG1 has the clinical backing to demonstrate intestinal barrier repair, gut lining nourishment, and cellular absorption. This angle is currently 0% utilized in top video spend.
+          </p>
+        </div>
+        <span class="finding-badge mono" style="background:var(--ag1-emerald);color:#000;">BIGGEST OPPORTUNITY</span>
+      </div>
+
+      <!-- Finding 06 -->
+      <div class="exec-finding-card">
+        <div>
+          <div class="finding-num">06</div>
+          <h3 class="finding-headline">Identity Storytelling Needs Everyday Friction</h3>
+          <p class="finding-desc">
+            Outside celebrity spots, creative is predominantly product-centric canisters and ingredient checklists. Missing authentic "day-in-the-life" tension for overworked founders, exhausted parents, and athletes battling hidden nutritional deficits.
+          </p>
+        </div>
+        <span class="finding-badge mono">UNTAPPED AUDIENCE</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       02 — META AD LIBRARY: LONGEST-RUNNING ADS AUDIT
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="ad-library" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">02 / META AD LIBRARY — TOP LONGEST-RUNNING ADS</h2>
+      <span class="section-header-meta mono">[ OBSERVED DATA: Meta Ad Library &bull; page_id: 183869772601 ]</span>
+    </div>
+
+    <div class="ad-library-grid">
+      
+      <!-- Ad 01 -->
+      <article class="ad-card">
+        <div class="ad-visual-mock">
+          <div class="mock-topbar mono">
+            <span>AD_CLUSTER_01.MP4</span>
+            <span style="color:var(--ag1-emerald-dark);">5 ACTIVE VERSIONS</span>
+          </div>
+          <div class="mock-center-visual">
+            <span class="mock-type-tag mono">CLINICAL AUTHORITY</span>
+            <div class="mono" style="font-size:11px;opacity:0.65;line-height:1.3;">
+              [ KITCHEN POUR &bull; SCOOP VISUAL &bull; "CLINICALLY SHOWN" BADGE ]
+            </div>
+          </div>
+          <div class="mock-footer-strip mono">
+            <span>LONGEVITY: 7+ MONTHS</span>
+            <span style="color:var(--ag1-emerald);">&bull; ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="ad-info-stack">
+          <div class="ad-meta-id-strip mono">
+            <strong>Library ID:</strong> 1603630744310905<br>
+            <strong>Started:</strong> Feb 24, 2026 &bull; Multi-version cluster
+          </div>
+
+          <blockquote class="ad-hook-quote">
+            &ldquo;Ready to upgrade your health routine? Most supplements aren’t backed by science. AG1 Next Gen is. This formula is clinically shown to support gut health and fill common nutrient gaps in one powerful scoop.&rdquo;
+          </blockquote>
+
+          <ul class="ad-attributes-list mono">
+            <li><strong>HOOK:</strong> Pattern Interrupt + Clinical Science contrast</li>
+            <li><strong>OFFER:</strong> One scoop a day + Free Welcome Kit + Travel packs</li>
+            <li><strong>PROOF:</strong> Clinically shown to fill nutrient gaps; upgraded probiotics</li>
+            <li><strong>STRATEGIC DIAGNOSIS:</strong> The primary evergreen workhorse. Reliable foundation, but suffers from acute visual fatigue.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Ad 02 -->
+      <article class="ad-card">
+        <div class="ad-visual-mock">
+          <div class="mock-topbar mono">
+            <span>AD_CLUSTER_02.MP4</span>
+            <span>CELEBRITY / UGC</span>
+          </div>
+          <div class="mock-center-visual">
+            <span class="mock-type-tag mono">CELEBRITY TRUST</span>
+            <div class="mono" style="font-size:11px;opacity:0.65;line-height:1.3;">
+              [ HUGH JACKMAN &bull; MORNING ROUTINE &bull; SHAKER BOTTLE ]
+            </div>
+          </div>
+          <div class="mock-footer-strip mono">
+            <span>MID-2026 &rarr; OCT 2026</span>
+            <span style="color:var(--ag1-emerald);">&bull; ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="ad-info-stack">
+          <div class="ad-meta-id-strip mono">
+            <strong>Ad Type:</strong> A-List Celebrity Endorsement<br>
+            <strong>Platform:</strong> Meta Video Dominant (Reels / Feed)
+          </div>
+
+          <blockquote class="ad-hook-quote">
+            &ldquo;For over five years, Hugh Jackman has trusted AG1 as part of his morning routine. Why? Because consistency matters.&rdquo;
+          </blockquote>
+
+          <ul class="ad-attributes-list mono">
+            <li><strong>HOOK:</strong> Long-term celebrity trust &amp; morning ritual</li>
+            <li><strong>ANGLE:</strong> High-status aspirational discipline ("Stronger mornings start here")</li>
+            <li><strong>PROOF:</strong> 5+ years of verified personal usage by high-profile athlete/actor</li>
+            <li><strong>STRATEGIC DIAGNOSIS:</strong> Exceptional halo effect, but zero objection handling. Doesn't explain why someone struggling with bloating or a tight budget should pay $100.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Ad 03 -->
+      <article class="ad-card">
+        <div class="ad-visual-mock">
+          <div class="mock-topbar mono">
+            <span>AD_CLUSTER_03.MP4</span>
+            <span style="color:var(--alert-amber);">BENEFIT STACK</span>
+          </div>
+          <div class="mock-center-visual">
+            <span class="mock-type-tag mono">ALL-IN-ONE UTILITY</span>
+            <div class="mono" style="font-size:11px;opacity:0.65;line-height:1.3;">
+              [ 75+ INGREDIENTS LIST &bull; NSF CERTIFIED &bull; CANISTER ]
+            </div>
+          </div>
+          <div class="mock-footer-strip mono">
+            <span>HIGH IMPRESSION CLUSTER</span>
+            <span style="color:var(--ag1-emerald);">&bull; ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="ad-info-stack">
+          <div class="ad-meta-id-strip mono">
+            <strong>Ad Type:</strong> Rational Benefit Stack + Social Proof<br>
+            <strong>Variants:</strong> Pro / Next Gen formula badging
+          </div>
+
+          <blockquote class="ad-hook-quote">
+            &ldquo;AG1 contains 75+ high-quality ingredients that your body can easily absorb. AG1 helps with: Digestive Health &bull; Healthy Energy Levels &bull; Immune Support.&rdquo;
+          </blockquote>
+
+          <ul class="ad-attributes-list mono">
+            <li><strong>HOOK:</strong> Quantitative ingredient density + broad health pillars</li>
+            <li><strong>PROOF:</strong> 50k+ verified 5-star reviews + NSF Certified for Sport badge</li>
+            <li><strong>OFFER:</strong> Next Gen / Pro variants (creatine + zinc carnosine)</li>
+            <li><strong>STRATEGIC DIAGNOSIS:</strong> Laundry list fatigue. When an ad claims to solve everything at once, skeptics dismiss it as a generic powder.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       03 — LONGEVITY: 7+ MONTH SURVIVAL ANALYSIS
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="longevity" class="longevity-banner">
+    <div>
+      <div class="mono" style="color:var(--ag1-emerald);font-size:11px;font-weight:700;letter-spacing:0.16em;margin-bottom:8px;">
+        [ OBSERVED LONGEVITY METRICS ]
+      </div>
+      <h2 style="font-size:clamp(1.8rem, 3.5vw, 2.8rem);font-weight:800;line-height:1;text-transform:uppercase;letter-spacing:-0.03em;margin-bottom:1rem;">
+        FEB 24, 2026 &rarr; OCT 2026<br>
+        <span style="color:var(--ag1-emerald);">7+ MONTH CREATIVE SURVIVAL</span>
+      </h2>
+      <p style="font-size:13.5px;color:#d1d5db;line-height:1.55;max-width:52ch;">
+        In algorithmic paid social, ads only stay active for 200+ days if they generate profitable volume. AG1's primary clinical authority ad has survived 7+ months of continuous media spend. But longevity without iteration leads inevitably to audience exhaustion.
+      </p>
+    </div>
+
+    <!-- Timeline Frame -->
+    <div class="longevity-timeline-wrap mono">
+      <div class="timeline-title-row">
+        <span>ACTIVE LIFESPAN: 220+ DAYS CONTINUOUS</span>
+        <span>STATUS: EXTENDED WEAR</span>
+      </div>
+
+      <div class="timeline-bar-frame">
+        <div class="timeline-bar-fill">
+          7+ MONTHS ACTIVE (FEB 24 - PRESENT)
+        </div>
+      </div>
+
+      <div class="timeline-labels-row">
+        <span>LAUNCH: FEB 24, 2026</span>
+        <span>PEAK: MAY–JUL 2026</span>
+        <span>FATIGUE WINDOW: OCT 2026</span>
+      </div>
+
+      <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.15);font-size:11px;line-height:1.45;color:#9ca3af;">
+        <strong style="color:#fff;">STRATEGIC INTERPRETATION:</strong> The ad survived because "clinically shown" and "upgrade your routine" are universally compliant and cast a wide top-of-funnel net. However, high frequency across Meta has created banner blindness. The creative system urgently needs new entry-point hooks.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       04 — CUSTOMER VOICE: WHAT CUSTOMERS ACTUALLY SAY
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="customer-voice" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">04 / CUSTOMER VOICE — WHAT REAL BUYERS ACTUALLY SAY</h2>
+      <span class="section-header-meta mono">[ UNFILTERED LANGUAGE: Amazon, Shopify Reviews, Reddit, TikTok ]</span>
+    </div>
+
+    <!-- Interactive Category Filter Tabs -->
+    <div class="filter-tabs-bar mono" id="quoteFilterTabs">
+      <button class="filter-btn active" data-filter="all">ALL VOICE (10)</button>
+      <button class="filter-btn" data-filter="desire">DESIRES (3)</button>
+      <button class="filter-btn" data-filter="pain">PAINS (3)</button>
+      <button class="filter-btn" data-filter="objection">OBJECTIONS (3)</button>
+      <button class="filter-btn" data-filter="belief">BELIEFS (1)</button>
+    </div>
+
+    <!-- Customer Quotes Grid -->
+    <div class="customer-quotes-grid" id="quotesGrid">
+      
+      <!-- Quote 1: Pain / Relief -->
+      <div class="quote-card" data-category="pain">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag pain">PAIN &bull; GASTRO PROBLEM</span>
+          <span class="quote-source-label">VERIFIED REVIEW</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;It has completely fixed my Gastro problems… I can handle dairy, carb heavy meals and fried foods with little to no issues.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Food Freedom / Digestive Tolerance</span>
+      </div>
+
+      <!-- Quote 2: Desire / Energy -->
+      <div class="quote-card" data-category="desire">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag desire">DESIRE &bull; ENERGY &amp; MOOD</span>
+          <span class="quote-source-label">VERIFIED REVIEW</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;I feel amazing. Within days my mood improved… my energy increased, and I just overall felt better.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Rapid Mood &amp; Vitality Baseline</span>
+      </div>
+
+      <!-- Quote 3: Pain / Bloat -->
+      <div class="quote-card" data-category="pain">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag pain">PAIN &bull; SEVERE BLOAT</span>
+          <span class="quote-source-label">VERIFIED REVIEW</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;No more bloating… my energy and my mental state improved. Before I was lucky to go once a week.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Regularity &amp; De-Bloating Reality</span>
+      </div>
+
+      <!-- Quote 4: Desire / Texture -->
+      <div class="quote-card" data-category="desire">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag desire">DESIRE &bull; DRINKABILITY</span>
+          <span class="quote-source-label">VERIFIED REVIEW</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;Gives instant energy and focus. Not thick and grainy. I can chug this or sip it without issue.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Smooth Dissolution vs Grainy Greens</span>
+      </div>
+
+      <!-- Quote 5: Belief / Taste Reality -->
+      <div class="quote-card" data-category="belief">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag belief">BELIEF &bull; TASTE TRADEOFF</span>
+          <span class="quote-source-label">CUSTOMER FORUM</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;The taste is not for everyone… earthy… but I can’t go without it. My brain is not as foggy.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Efficacy Outweighs Taste Tradeoff</span>
+      </div>
+
+      <!-- Quote 6: Objection / Price -->
+      <div class="quote-card" data-category="objection">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag objection">OBJECTION &bull; PRIMARY REDDIT</span>
+          <span class="quote-source-label">r/ATHLETICGREENS</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;It’s an overpriced multivitamin / expensive pee. $80–$100/month for something I could DIY for $25.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:#c62828;font-weight:700;">&rarr; The #1 Core Objection to Overcome</span>
+      </div>
+
+      <!-- Quote 7: Objection / Proprietary -->
+      <div class="quote-card" data-category="objection">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag objection">OBJECTION &bull; INGREDIENTS</span>
+          <span class="quote-source-label">r/BIOHACKERS</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;Pixie-dusted ingredients… proprietary blends hide underdosing so you don’t know how much of each active you actually get.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:#c62828;font-weight:700;">&rarr; Scientific Skepticism Barrier</span>
+      </div>
+
+      <!-- Quote 8: Pain / Pill Fatigue -->
+      <div class="quote-card" data-category="pain">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag pain">PAIN &bull; SUPPLEMENT CLUTTER</span>
+          <span class="quote-source-label">TIKTOK DISCOURSE</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;I was swallowing 8 different horse pills every morning and still felt flat. Sick of buying 6 different bottles every month.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">&rarr; Copy Angle: Stack Consolidation / Pill Fatigue</span>
+      </div>
+
+      <!-- Quote 9: Objection / Formulation -->
+      <div class="quote-card" data-category="objection">
+        <div class="quote-badge-row mono">
+          <span class="quote-category-tag objection">OBJECTION &bull; NEXT GEN FORMULA</span>
+          <span class="quote-source-label">REDDIT THREAD</span>
+        </div>
+        <p class="quote-body-text">
+          &ldquo;The Next Gen formula has a strange bitter aftertaste compared to the old batch, plus slight stomach cramping the first week.&rdquo;
+        </p>
+        <span class="mono" style="font-size:11px;color:#c62828;font-weight:700;">&rarr; Need Microbiome Adaptation Framing</span>
+      </div>
+
+    </div>
+
+    <!-- Language to Steal Strip -->
+    <div class="steal-language-bar mono">
+      <span class="steal-title">LANGUAGE TO STEAL &rarr;</span>
+      <span class="steal-pill">&ldquo;EXPENSIVE PEE&rdquo;</span>
+      <span class="steal-pill">&ldquo;LUCKY TO GO ONCE A WEEK&rdquo;</span>
+      <span class="steal-pill">&ldquo;NOT THICK AND GRAINY&rdquo;</span>
+      <span class="steal-pill">&ldquo;HANDLE DAIRY AND CARBS&rdquo;</span>
+      <span class="steal-pill">&ldquo;AFTERNOON CRASH&rdquo;</span>
+      <span class="steal-pill">&ldquo;CAN'T GO WITHOUT IT&rdquo;</span>
+      <span class="steal-pill">&ldquo;SIX BOTTLES INTO ONE SCOOP&rdquo;</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       05 — THE BIGGEST CREATIVE PROBLEM: $100 OBJECTION BREAKDOWN
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="objection" class="objection-breakdown-section">
+    <div class="objection-container">
+      
+      <div class="objection-header mono">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="background:var(--alert-warn);color:#fff;padding:2px 8px;font-weight:700;">CORE CONVERSION BARRIER</span>
+          <span style="font-size:11px;letter-spacing:0.12em;">STRATEGIC DIAGNOSIS</span>
+        </div>
+        <span style="font-size:11px;opacity:0.7;">SOURCE: REDDIT &bull; TIKTOK &bull; ON-SITE BOUNCE</span>
+      </div>
+
+      <div class="objection-main-statement">
+        THE BIGGEST CREATIVE PROBLEM:<br>
+        &ldquo;IT’S AN OVERPRICED MULTIVITAMIN / EXPENSIVE PEE.&rdquo;
+      </div>
+
+      <!-- 4-Step Editorial Transformation Flow -->
+      <div class="objection-flow-grid">
+        
+        <!-- Step 1 -->
+        <div class="objection-step-col">
+          <span class="step-badge mono">01 / PERCEPTION</span>
+          <h3 class="step-title">What Customers Believe</h3>
+          <p class="step-body">
+            Consumers see a $90–$100 monthly subscription for green powder. They compare it to a $20 multivitamin from Costco or a generic greens tub and believe they are paying a massive 400% markup purely for influencer marketing and celebrity packaging.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="objection-step-col">
+          <span class="step-badge mono">02 / ROOT CAUSE</span>
+          <h3 class="step-title">Why They Believe It</h3>
+          <p class="step-body">
+            Proprietary blends hide specific milligram dosages, sparking biohacker skepticism around "pixie-dusting". Furthermore, brightly colored urine in the first days creates the cultural meme of "excreting pure wasted money".
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="objection-step-col">
+          <span class="step-badge mono">03 / CURRENT FAILURE</span>
+          <h3 class="step-title">How AG1 Currently Responds</h3>
+          <p class="step-body">
+            AG1 doubles down on "75+ high quality ingredients", NSF badges, and celebrity morning routines. This rational stacking backfires: to a skeptic, 75 ingredients simply sounds like 75 underdosed ingredients in an overpriced luxury drink.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="objection-step-col">
+          <span class="step-badge mono" style="color:var(--ag1-emerald-dark);">04 / THE STRATEGIC FIX</span>
+          <h3 class="step-title">What AG1 Should Communicate</h3>
+          <p class="step-body">
+            <strong>1. Stack Replacement Reframe:</strong> Show the 6 individual bottles AG1 replaces ($275/mo down to $2.63/day).<br>
+            <strong>2. Bioavailability &amp; Absorption Demo:</strong> Show cellular absorption vs synthetic tablet excretion.<br>
+            <strong>3. Nutritional Insurance:</strong> The peace of mind you never want to test living without.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="padding:14px 20px;background:var(--ag1-forest-dark);color:var(--ag1-emerald);font-size:11px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;" class="mono">
+        <span>STRATEGIC SUMMARY &rarr; DO NOT AVOID THE $100 PRICE TAG. OWN AND REFRAME IT ON THE FIRST 3 SECONDS.</span>
+        <span style="color:#fff;">DIRECT AD IMPLICATION</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       06 — HOOK AUDIT: 3-CARD VISUAL TEARDOWN
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="hook-audit" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">06 / HOOK AUDIT — TOP RUNNING HOOKS TEARDOWN</h2>
+      <span class="section-header-meta mono">[ EVALUATION OF CORE OPENING FRAMES ]</span>
+    </div>
+
+    <div class="hook-audit-grid">
+      
+      <!-- Hook 01 -->
+      <div class="hook-audit-card">
+        <div>
+          <div class="hook-number-row mono">
+            <span>HOOK_01 &bull; EVERGREEN</span>
+            <span class="status-pill warn" style="font-size:9px;">FATIGUE: HIGH</span>
+          </div>
+          <div style="margin:12px 0;">
+            <div class="hook-text-box">
+              &ldquo;Ready to upgrade your health routine? Most supplements aren’t backed by science. AG1 Next Gen is.&rdquo;
+            </div>
+          </div>
+          <span class="hook-type-pill">Pattern Interrupt + Clinical Authority</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHAT WORKS</span>
+            <p class="field-desc">
+              Directly contrasts AG1 against cheap, unscientific supplements. Establishes immediate premium positioning and authority.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHY IT FATIGUES</span>
+            <p class="field-desc fatigue-callout">
+              Running continuously since Feb 2026. The claim "clinically shown" has been seen 10+ times per user. No mechanism demonstration or visual proof of what happens inside the gut barrier.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">STRATEGIC OPPORTUNITY</span>
+            <p class="field-desc opportunity-callout">
+              Replace the verbal claim with an animated cross-section of the intestinal barrier absorbing bioavailable nutrients.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hook 02 -->
+      <div class="hook-audit-card">
+        <div>
+          <div class="hook-number-row mono">
+            <span>HOOK_02 &bull; CELEBRITY</span>
+            <span class="status-pill warn" style="font-size:9px;">FATIGUE: HIGH</span>
+          </div>
+          <div style="margin:12px 0;">
+            <div class="hook-text-box">
+              &ldquo;For over five years, Hugh Jackman has trusted AG1 as part of his morning routine.&rdquo;
+            </div>
+          </div>
+          <span class="hook-type-pill">Social Proof / Celebrity Identity</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHAT WORKS</span>
+            <p class="field-desc">
+              High-prestige association. 5-year loyalty signals that the habit is sustainable and genuinely part of high-performer life.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHY IT FATIGUES</span>
+            <p class="field-desc fatigue-callout">
+              Celebrity sponsorship cynicism is at an all-time high in wellness. Missing before/after friction. Feels like an endorsed TV spot rather than relatable personal transformation.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">STRATEGIC OPPORTUNITY</span>
+            <p class="field-desc opportunity-callout">
+              Target the non-celebrity high-performer who eats clean and exercises, but still battles afternoon brain fog and bloating.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hook 03 -->
+      <div class="hook-audit-card">
+        <div>
+          <div class="hook-number-row mono">
+            <span>HOOK_03 &bull; BENCHMARK</span>
+            <span class="status-pill" style="font-size:9px;background:#fff8e1;">FATIGUE: MED-HIGH</span>
+          </div>
+          <div style="margin:12px 0;">
+            <div class="hook-text-box">
+              &ldquo;AG1 contains 75+ high-quality ingredients… Digestive Health &bull; Healthy Energy Levels &bull; Immune Support&rdquo;
+            </div>
+          </div>
+          <span class="hook-type-pill">Benefit Stack / Ingredient Laundry List</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHAT WORKS</span>
+            <p class="field-desc">
+              Clear density and all-in-one efficiency. Reassures rational buyers looking to consolidate multiple pills into one powder.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">WHY IT FATIGUES</span>
+            <p class="field-desc fatigue-callout">
+              Classic benefit laundry list. No single dominant visceral promise, no visual "how it works", and product visuals stay frozen on canister + scoop.
+            </p>
+          </div>
+          <div class="hook-audit-field">
+            <span class="field-tag mono">STRATEGIC OPPORTUNITY</span>
+            <p class="field-desc opportunity-callout">
+              Isolate one visceral physical pain point (e.g. food intolerances / bloating) and prove how the pre+probiotics solve it.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       07 — 4-BOX ANGLE MAP: COVERAGE VS. GAPS
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="angle-map" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">07 / ANGLE MAP — 4-BOX STRATEGIC COVERAGE AUDIT</h2>
+      <span class="section-header-meta mono">[ EVALUATING THE 4 CORE DIRECT RESPONSE PURCHASE TRIGGERS ]</span>
+    </div>
+
+    <div class="angle-map-wrapper">
+      
+      <!-- Left Intro Pane -->
+      <div class="angle-map-intro-pane">
+        <div>
+          <span class="insight-badge mono">DIAGNOSTIC MATRIX</span>
+          <h3 class="angle-map-lead-title">
+            THEY OWN<br>
+            IDENTITY.<br>
+            <span style="background:#000;color:#fff;padding:0 8px;">WE OWN</span><br>
+            MECHANISM.
+          </h3>
+          <p style="font-size:13px;line-height:1.55;color:#374151;max-width:38ch;">
+            Visual audit mapping AG1's active creative spend across the 4 fundamental buying levers. 
+            <strong>Identity is over-indexed (68% of spend).</strong> 
+            <strong>Mechanism and physiological proof are almost completely vacant</strong> — representing the single largest conversion breakthrough.
+          </p>
+        </div>
+
+        <div style="margin-top:2rem;display:flex;gap:16px;font-size:11px;" class="mono">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:12px;height:12px;background:#000;border:1.5px solid #000;border-radius:50%;display:inline-block;"></span>
+            <span>FILLED = COVERED IN ADS</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:12px;height:12px;background:#fff;border:1.5px solid #000;border-radius:50%;display:inline-block;"></span>
+            <span>EMPTY = HIGH-LEVERAGE GAP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 4-Quadrant Grid -->
+      <div class="quadrant-grid">
+        
+        <!-- Quadrant 1: Pain -->
+        <div class="quadrant-card">
+          <div>
+            <div class="quadrant-header-row mono">
+              <div>
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;color:#c62828;">TRIGGER 01</span>
+                <div class="quadrant-title">PAIN &bull; PROBLEM</div>
+              </div>
+              <span class="status-pill mono">2 / 12 COVERED</span>
+            </div>
+
+            <div class="dot-matrix-row">
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+            </div>
+
+            <ul class="quadrant-bullets">
+              <li>Chronic afternoon energy crash &amp; low stamina</li>
+              <li>Bloating, irregular digestion, &ldquo;heavy&rdquo; gut</li>
+              <li>Pill fatigue (frustrated taking 6–8 bottles)</li>
+              <li>Diet anxiety (feeling food is never nutritionally complete)</li>
+              <li>Persistent brain fog &amp; flat morning mood</li>
+            </ul>
+          </div>
+          <div class="mono" style="margin-top:1rem;font-size:10px;padding:4px 8px;background:var(--bg-alt);border:1px solid #000;">
+            &rarr; Current State: Under-utilized. Ads avoid acute bodily pain.
+          </div>
+        </div>
+
+        <!-- Quadrant 2: Desire -->
+        <div class="quadrant-card">
+          <div>
+            <div class="quadrant-header-row mono">
+              <div>
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;color:#2e7d32;">TRIGGER 02</span>
+                <div class="quadrant-title">DESIRE &bull; OUTCOME</div>
+              </div>
+              <span class="status-pill mono">4 / 12 COVERED</span>
+            </div>
+
+            <div class="dot-matrix-row">
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+            </div>
+
+            <ul class="quadrant-bullets">
+              <li>Steady, clean energy without caffeine jitters</li>
+              <li>Normal digestion with zero post-meal bloating</li>
+              <li>Effortless morning routine that simplifies life</li>
+              <li>Mental clarity, focus, and sharp executive presence</li>
+              <li>Long-term peace of mind / foundational health insurance</li>
+            </ul>
+          </div>
+          <div class="mono" style="margin-top:1rem;font-size:10px;padding:4px 8px;background:var(--bg-alt);border:1px solid #000;">
+            &rarr; Current State: Promoted, but framed in generic abstractions.
+          </div>
+        </div>
+
+        <!-- Quadrant 3: Identity -->
+        <div class="quadrant-card saturated">
+          <div>
+            <div class="quadrant-header-row mono">
+              <div>
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;color:#6b21a8;">TRIGGER 03</span>
+                <div class="quadrant-title">IDENTITY &bull; BELONGING</div>
+              </div>
+              <span class="status-pill warn mono">10 / 12 OVER-INDEXED</span>
+            </div>
+
+            <div class="dot-matrix-row">
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+            </div>
+
+            <ul class="quadrant-bullets">
+              <li>High-performer / Biohacker-lite / Huberman disciple</li>
+              <li>Busy executive / Founder / Disciplined professional</li>
+              <li>Conscious health optimizer (&ldquo;I take care of myself&rdquo;)</li>
+              <li>Aspirational fitness athlete &amp; weekend warrior</li>
+              <li>A-list celebrity morning habit (Hugh Jackman, etc.)</li>
+            </ul>
+          </div>
+          <div class="mono" style="margin-top:1rem;font-size:10px;padding:4px 8px;background:#fff;border:1.5px solid #000;font-weight:700;">
+            &rarr; Saturated: 68% of spend. High CPA risk on cold traffic.
+          </div>
+        </div>
+
+        <!-- Quadrant 4: Mechanism -->
+        <div class="quadrant-card opportunity">
+          <div>
+            <div class="quadrant-header-row mono">
+              <div>
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.14em;color:var(--ag1-emerald-dark);">TRIGGER 04</span>
+                <div class="quadrant-title">MECHANISM &bull; PROOF</div>
+              </div>
+              <span class="status-pill emerald mono">1 / 12 BIGGEST GAP</span>
+            </div>
+
+            <div class="dot-matrix-row">
+              <span class="matrix-dot filled"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+              <span class="matrix-dot empty"></span>
+            </div>
+
+            <ul class="quadrant-bullets">
+              <li>75+ bioavailable whole-food sourced ingredients</li>
+              <li>Prebiotics + probiotics coating gut epithelial lining</li>
+              <li>NSF Certified for Sport batch validation</li>
+              <li>Clinically shown nutrient gap absorption testing</li>
+              <li>Next Gen formulation (creatine + zinc carnosine synergy)</li>
+            </ul>
+          </div>
+          <div class="mono" style="margin-top:1rem;font-size:10px;padding:4px 8px;background:#000;color:#fff;font-weight:700;">
+            &rarr; 100% UNTAPPED WEDGE. Solves the skepticism crisis.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       08 — CREATIVE GAPS: WHAT AG1 IS NOT SHOWING
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="creative-gaps" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">08 / WHAT'S MISSING — 3 MAJOR CREATIVE GAPS</h2>
+      <span class="section-header-meta mono">[ THE 3 STRATEGIC VULNERABILITIES TO STEAL ]</span>
+    </div>
+
+    <div class="gaps-cards-grid">
+      
+      <!-- Gap 01 -->
+      <div class="gap-card">
+        <div>
+          <div class="gap-num-row">
+            <span class="gap-num mono">01</span>
+            <span class="gap-icon-badge mono">&nearr;</span>
+          </div>
+          <h3 class="gap-title" style="margin-top:1.5rem;">
+            No Mechanism Demo or &ldquo;Proof of Work&rdquo;
+          </h3>
+        </div>
+
+        <div class="gap-step-box mono">
+          <div>
+            <span class="gap-label">CURRENT STATE &rarr;</span>
+            <p class="gap-val">Ads never show what actually happens inside the digestive tract. Everything stays surface-level with green scoops and shaker bottles.</p>
+          </div>
+          <div>
+            <span class="gap-label">WHY IT MATTERS &rarr;</span>
+            <p class="gap-val">Without a tangible visual metaphor for nutrient absorption and intestinal barrier repair, consumers assume it is no different from a standard $25 multivitamin.</p>
+          </div>
+          <div>
+            <span class="gap-label" style="color:var(--ag1-emerald-dark);">CREATIVE OPPORTUNITY &rarr;</span>
+            <p class="gap-val" style="font-weight:700;color:#000;">Deploy 3D medical-style animations showing the gut lining being protected, coated, and restored by pre/probiotics and zinc carnosine.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap 02 -->
+      <div class="gap-card">
+        <div>
+          <div class="gap-num-row">
+            <span class="gap-num mono">02</span>
+            <span class="gap-icon-badge mono">&nearr;</span>
+          </div>
+          <h3 class="gap-title" style="margin-top:1.5rem;">
+            Price / Value Objection Is Never Owned
+          </h3>
+        </div>
+
+        <div class="gap-step-box mono">
+          <div>
+            <span class="gap-label">CURRENT STATE &rarr;</span>
+            <p class="gap-val">Competitors and Reddit constantly label AG1 as "expensive pee". Current ads completely dodge the price conversation, hoping authority masks the $100 barrier.</p>
+          </div>
+          <div>
+            <span class="gap-label">WHY IT MATTERS &rarr;</span>
+            <p class="gap-val">High PDP bounce rate. When an ad fails to prep the buyer for the price tag, sticker shock at checkout destroys conversion efficiency.</p>
+          </div>
+          <div>
+            <span class="gap-label" style="color:var(--ag1-emerald-dark);">CREATIVE OPPORTUNITY &rarr;</span>
+            <p class="gap-val" style="font-weight:700;color:#000;">Own the objection immediately with "Stop buying expensive pee" and visually replace $275 in individual bottles with one $2.63/day scoop.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap 03 -->
+      <div class="gap-card">
+        <div>
+          <div class="gap-num-row">
+            <span class="gap-num mono">03</span>
+            <span class="gap-icon-badge mono">&nearr;</span>
+          </div>
+          <h3 class="gap-title" style="margin-top:1.5rem;">
+            Identity &amp; Lifestyle Storytelling Is Paper Thin
+          </h3>
+        </div>
+
+        <div class="gap-step-box mono">
+          <div>
+            <span class="gap-label">CURRENT STATE &rarr;</span>
+            <p class="gap-val">Outside glossy celebrity features, the ad creative is purely canister-centric product photography and bullet points in sterile white kitchens.</p>
+          </div>
+          <div>
+            <span class="gap-label">WHY IT MATTERS &rarr;</span>
+            <p class="gap-val">Lacks human tension. Doesn't tap into the emotional reality of an overstimulated founder, an exhausted parent, or a disciplined athlete who still feels brain fog.</p>
+          </div>
+          <div>
+            <span class="gap-label" style="color:var(--ag1-emerald-dark);">CREATIVE OPPORTUNITY &rarr;</span>
+            <p class="gap-val" style="font-weight:700;color:#000;">Build high-retention cinematic UGC around: "For people who do everything right... but still feel off."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       09 — 5 FRESH CONCEPTS: READY TO SHOOT
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="new-concepts" class="teardown-section">
+    <div class="section-header-bar dark">
+      <h2 class="section-num-title mono">09 / 5 FRESH CREATIVE CONCEPTS — READY TO SHOOT</h2>
+      <span class="section-header-meta mono">[ HOOKS &le; 8 WORDS &bull; FORMAT &bull; STRATEGIC HYPOTHESIS &bull; 30-SEC SCAN ]</span>
+    </div>
+
+    <div class="concepts-list-wrap">
+      
+      <!-- Concept 01 -->
+      <div class="concept-item-row">
+        <div class="concept-num-col mono">
+          <span class="concept-big-num">01</span>
+        </div>
+
+        <div class="concept-details-col">
+          <div class="concept-header-strip mono">
+            <span class="concept-angle-pill">CONCEPT 01 &bull; MECHANISM REVEAL</span>
+            <span style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">[ CREATIVE HYPOTHESIS ]</span>
+          </div>
+
+          <h3 class="concept-hook-headline">
+            &ldquo;Your gut lining is starving.&rdquo;
+          </h3>
+
+          <p style="font-size:14px;color:#222;line-height:1.45;">
+            <strong>Core Narrative:</strong> Open on a simple, high-retention animated cross-section of the intestinal gut wall barrier looking inflamed, porous, and thin &rarr; emerald green liquid coats, soothes, and thickens it. Voiceover explains the biological mechanism: prebiotics, probiotics, and zinc carnosine working synergistically. Ends on a calm, energized morning face with zero bloating. Directly addresses the #1 actual relief customer reviews report.
+          </p>
+
+          <div class="concept-specs-grid mono">
+            <div class="spec-block">
+              <span class="spec-label">VISUAL DIRECTION &amp; REF</span>
+              <span class="spec-val">TikTok medical animation style (#gutlining) or Pinterest intestinal barrier repair illustration.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TARGET PERSONA</span>
+              <span class="spec-val">Chronic bloating sufferers, digestive optimizers, people with post-meal gastro distress.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TRIGGER &amp; FORMAT</span>
+              <span class="spec-val">Visceral biological mechanism &bull; 3D Animation / Educational UGC hybrid.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">RECOMMENDED CTA</span>
+              <span class="spec-val">&ldquo;Nourish your gut barrier with AG1 Next Gen &rarr;&rdquo;</span>
+            </div>
+          </div>
+
+          <button class="copy-hook-btn mono" data-copy="Your gut lining is starving.">
+            <span>Copy Hook &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Concept 02 -->
+      <div class="concept-item-row">
+        <div class="concept-num-col mono">
+          <span class="concept-big-num">02</span>
+        </div>
+
+        <div class="concept-details-col">
+          <div class="concept-header-strip mono">
+            <span class="concept-angle-pill">CONCEPT 02 &bull; PRICE / STACK REFRAME</span>
+            <span style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">[ CREATIVE HYPOTHESIS ]</span>
+          </div>
+
+          <h3 class="concept-hook-headline">
+            &ldquo;Six bottles. One scoop.&rdquo;
+          </h3>
+
+          <p style="font-size:14px;color:#222;line-height:1.45;">
+            <strong>Core Narrative:</strong> Fast-paced montage of individual pill bottles hitting a trash can or recycling bin: Multivitamin ($35), Probiotic ($45), Greens Tub ($40), Adaptogen ($35), Immune Support ($30), Energy Blend ($40). Super on screen calculates: "$275/mo worth of pills &rarr; $2.63 per morning scoop." Directly takes the Reddit "$100 is expensive" objection and demolishes it by comparing AG1 to the cost of an unbundled stack.
+          </p>
+
+          <div class="concept-specs-grid mono">
+            <div class="spec-block">
+              <span class="spec-label">VISUAL DIRECTION &amp; REF</span>
+              <span class="spec-val">TikTok "replace your supplement stack" native desk breakdown; fast kinetic cuts.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TARGET PERSONA</span>
+              <span class="spec-val">Pill-fatigued consumers spending $150+ across GNC, Amazon, and wellness stores.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TRIGGER &amp; FORMAT</span>
+              <span class="spec-val">Stack consolidation / Perceived financial savings &bull; Native UGC Unboxing.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">RECOMMENDED CTA</span>
+              <span class="spec-val">&ldquo;Consolidate your daily routine for $2.63/day &rarr;&rdquo;</span>
+            </div>
+          </div>
+
+          <button class="copy-hook-btn mono" data-copy="Six bottles. One scoop.">
+            <span>Copy Hook &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Concept 03 -->
+      <div class="concept-item-row">
+        <div class="concept-num-col mono">
+          <span class="concept-big-num">03</span>
+        </div>
+
+        <div class="concept-details-col">
+          <div class="concept-header-strip mono">
+            <span class="concept-angle-pill">CONCEPT 03 &bull; HIGH-PERFORMER FRICTION</span>
+            <span style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">[ CREATIVE HYPOTHESIS ]</span>
+          </div>
+
+          <h3 class="concept-hook-headline">
+            &ldquo;For people who still feel off.&rdquo;
+          </h3>
+
+          <p style="font-size:14px;color:#222;line-height:1.45;">
+            <strong>Core Narrative:</strong> Quiet, cinematic morning scene: a focused professional who already does everything right—eats clean, trains 5x a week, sleeps 8 hours—yet still battles afternoon brain fog and flat energy. On-screen text: <em>&ldquo;You do everything right. Your nutrient absorption doesn't.&rdquo;</em> Transitions into the crisp morning ritual. Speaks directly to the high-performer who is fully optimized on paper but missing cellular baseline nutrition.
+          </p>
+
+          <div class="concept-specs-grid mono">
+            <div class="spec-block">
+              <span class="spec-label">VISUAL DIRECTION &amp; REF</span>
+              <span class="spec-val">Pinterest "quiet luxury morning routine" or TikTok high-performer 35mm aesthetic.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TARGET PERSONA</span>
+              <span class="spec-val">High-functioning professionals, biohackers, athletes who already eat well.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TRIGGER &amp; FORMAT</span>
+              <span class="spec-val">Subconscious optimization friction &bull; Cinematic Founder / UGC Hybrid.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">RECOMMENDED CTA</span>
+              <span class="spec-val">&ldquo;Fix your nutritional baseline &rarr;&rdquo;</span>
+            </div>
+          </div>
+
+          <button class="copy-hook-btn mono" data-copy="For people who still feel off.">
+            <span>Copy Hook &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Concept 04 -->
+      <div class="concept-item-row">
+        <div class="concept-num-col mono">
+          <span class="concept-big-num">04</span>
+        </div>
+
+        <div class="concept-details-col">
+          <div class="concept-header-strip mono">
+            <span class="concept-angle-pill">CONCEPT 04 &bull; PATTERN INTERRUPT</span>
+            <span style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">[ CREATIVE HYPOTHESIS ]</span>
+          </div>
+
+          <h3 class="concept-hook-headline">
+            &ldquo;Stop buying expensive pee.&rdquo;
+          </h3>
+          <div class="mono" style="font-size:12px;opacity:0.65;margin-top:-6px;">
+            Alt Hook: &ldquo;Most greens are expensive pee.&rdquo;
+          </div>
+
+          <p style="font-size:14px;color:#222;line-height:1.45;">
+            <strong>Core Narrative:</strong> Stark black screen with bold white typography addressing the exact internet meme. Immediate cut to science: standard synthetic pill compression vs bioavailable liquid nutrient uptake. Explains why cheap multi-tablets pass straight through without being absorbed by cellular walls, whereas AG1's cold-processed nutrients are engineered for bio-retention. Confronts the skepticism head-on and flips it into a proof point.
+          </p>
+
+          <div class="concept-specs-grid mono">
+            <div class="spec-block">
+              <span class="spec-label">VISUAL DIRECTION &amp; REF</span>
+              <span class="spec-val">Bold text-on-screen TikTok interrupt &rarr; fast laboratory absorption graphic.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TARGET PERSONA</span>
+              <span class="spec-val">Cynical supplement shoppers, Reddit researchers who read critical reviews.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TRIGGER &amp; FORMAT</span>
+              <span class="spec-val">Cognitive dissonance flip &bull; Kinetic Typography + Science Explainer.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">RECOMMENDED CTA</span>
+              <span class="spec-val">&ldquo;See the science of bioavailable absorption &rarr;&rdquo;</span>
+            </div>
+          </div>
+
+          <button class="copy-hook-btn mono" data-copy="Stop buying expensive pee.">
+            <span>Copy Hook &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Concept 05 -->
+      <div class="concept-item-row">
+        <div class="concept-num-col mono">
+          <span class="concept-big-num">05</span>
+        </div>
+
+        <div class="concept-details-col">
+          <div class="concept-header-strip mono">
+            <span class="concept-angle-pill">CONCEPT 05 &bull; DESIRE / 30-DAY RITUAL</span>
+            <span style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">[ CREATIVE HYPOTHESIS ]</span>
+          </div>
+
+          <h3 class="concept-hook-headline">
+            &ldquo;The first thing that works.&rdquo;
+          </h3>
+
+          <p style="font-size:14px;color:#222;line-height:1.45;">
+            <strong>Core Narrative:</strong> Zero hype, zero shouting influencers. A clean, realistic documentary-style time-lapse of a real person making the exact same morning drink for 30 consecutive days. Subtle, cumulative transformation: steady morning wakefulness, clearer eyes, absence of the 3 PM coffee slump, calm digestion. Ends on the bold risk reversal: <em>&ldquo;90-day money-back guarantee. Feel the physical difference or get every cent back.&rdquo;</em>
+          </p>
+
+          <div class="concept-specs-grid mono">
+            <div class="spec-block">
+              <span class="spec-label">VISUAL DIRECTION &amp; REF</span>
+              <span class="spec-val">Pinterest "30-day morning habit" or TikTok "Day 1 vs Day 30" realistic face vlog.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TARGET PERSONA</span>
+              <span class="spec-val">Fatigued buyers who have been burned by short-lived wellness fads.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">TRIGGER &amp; FORMAT</span>
+              <span class="spec-val">Anti-hype consistency + 90-day risk elimination &bull; Authentic Vlog Timelapse.</span>
+            </div>
+            <div class="spec-block">
+              <span class="spec-label">RECOMMENDED CTA</span>
+              <span class="spec-val">&ldquo;Experience 30 days risk-free on your routine &rarr;&rdquo;</span>
+            </div>
+          </div>
+
+          <button class="copy-hook-btn mono" data-copy="The first thing that works.">
+            <span>Copy Hook &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       10 — THE CREATIVE SYSTEM (MULTI-ANGLE PORTFOLIO SYNTHESIS)
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="system" class="system-framework-section">
+    <div class="container">
+      <div class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.16em;color:var(--ag1-emerald-dark);margin-bottom:8px;">
+        [ STRATEGIC SYNTHESIS ]
+      </div>
+      <h2 style="font-size:clamp(1.8rem, 3.5vw, 2.6rem);font-weight:800;letter-spacing:-0.03em;text-transform:uppercase;line-height:1;margin-bottom:1rem;">
+        BUILDING A CREATIVE SYSTEM &bull; NOT 5 RANDOM ADS
+      </h2>
+      <p style="font-size:13.5px;color:#374151;line-height:1.55;max-width:64ch;">
+        The objective is not to shoot five isolated ad variations. The objective is to establish <strong>five distinct creative territories</strong> that attack the conversion barrier from every psychological angle—providing an agile portfolio that protects against algorithmic ad fatigue.
+      </p>
+
+      <!-- 5-Step System Chain -->
+      <div class="system-chain-row mono">
+        
+        <div class="system-step-box">
+          <span class="system-step-num">TERRITORY 01</span>
+          <h4 class="system-step-name">MECHANISM</h4>
+          <p class="system-step-desc">Biological proof of gut barrier coating. Converts analytical &amp; skeptical fence-sitters.</p>
+        </div>
+
+        <div class="system-step-box">
+          <span class="system-step-num">TERRITORY 02</span>
+          <h4 class="system-step-name">PRICE REFRAME</h4>
+          <p class="system-step-desc">Consolidates $275 in bottles into $2.63/day. Overcomes checkout sticker shock.</p>
+        </div>
+
+        <div class="system-step-box">
+          <span class="system-step-num">TERRITORY 03</span>
+          <h4 class="system-step-name">IDENTITY</h4>
+          <p class="system-step-desc">Targets the disciplined optimizer who still feels flat. Unlocks premium LTV subscribers.</p>
+        </div>
+
+        <div class="system-step-box">
+          <span class="system-step-num">TERRITORY 04</span>
+          <h4 class="system-step-name">PATTERN INTERRUPT</h4>
+          <p class="system-step-desc">Directly attacks the "expensive pee" meme. Stops the thumb and forces cognitive re-evaluation.</p>
+        </div>
+
+        <div class="system-step-box">
+          <span class="system-step-num">TERRITORY 05</span>
+          <h4 class="system-step-name">RITUAL / DESIRE</h4>
+          <p class="system-step-desc">Quiet 30-day consistency paired with a 90-day guarantee. Reassures risk-averse skeptics.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       11 — WHAT I WOULD TEST FIRST: RANKED TESTING ROADMAP
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="roadmap" class="teardown-section">
+    <div class="section-header-bar">
+      <h2 class="section-num-title mono">11 / WHAT I WOULD TEST FIRST — RANKED EXPERIMENTATION ROADMAP</h2>
+      <span class="section-header-meta mono">[ STRATEGIC HYPOTHESIS &bull; REQUIRES ISOLATED A/B TESTING ]</span>
+    </div>
+
+    <div class="roadmap-grid">
+      
+      <!-- Rank 01 -->
+      <div class="roadmap-card">
+        <div>
+          <div class="rank-pill-row mono">
+            <span class="rank-num-badge">RANK 01</span>
+            <span class="rank-priority-tag">IMMEDIATE SPRINT</span>
+          </div>
+          <h3 class="roadmap-title" style="margin:1rem 0 0.5rem;">
+            Test 01: Biological Mechanism Reveal
+          </h3>
+          <p class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">
+            Concept 01: &ldquo;Your gut lining is starving.&rdquo;
+          </p>
+        </div>
+
+        <div class="roadmap-rationale">
+          <strong>Strategic Rationale:</strong> This represents the lowest CPM wedge with the highest viral retention potential on TikTok and Reels. It introduces a visual metaphor AG1 has never leveraged, opening a completely unreached customer segment that is blind to generic "green scoop" creative.
+        </div>
+
+        <div class="mono" style="padding:8px 12px;background:var(--bg-alt);border:1px solid #000;font-size:11px;">
+          KPI Focus: 3-Second Hook Hold Rate &bull; Outbound CTR Lift
+        </div>
+      </div>
+
+      <!-- Rank 02 -->
+      <div class="roadmap-card">
+        <div>
+          <div class="rank-pill-row mono">
+            <span class="rank-num-badge">RANK 02</span>
+            <span class="rank-priority-tag">CVR ACCELERATOR</span>
+          </div>
+          <h3 class="roadmap-title" style="margin:1rem 0 0.5rem;">
+            Test 02: Stack Replacement Price Reframe
+          </h3>
+          <p class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">
+            Concept 02: &ldquo;Six bottles. One scoop.&rdquo;
+          </p>
+        </div>
+
+        <div class="roadmap-rationale">
+          <strong>Strategic Rationale:</strong> The #1 reason interested prospects abandon PDP checkout is the $80–$100 price barrier. Framing the purchase against $275 in individual supplements repositions AG1 as a money-saving consolidation tool rather than an expensive indulgence.
+        </div>
+
+        <div class="mono" style="padding:8px 12px;background:var(--bg-alt);border:1px solid #000;font-size:11px;">
+          KPI Focus: PDP Conversion Rate (CVR) &bull; Blended CPA Reduction
+        </div>
+      </div>
+
+      <!-- Rank 03 -->
+      <div class="roadmap-card">
+        <div>
+          <div class="rank-pill-row mono">
+            <span class="rank-num-badge">RANK 03</span>
+            <span class="rank-priority-tag">HIGH-LTV SCALE</span>
+          </div>
+          <h3 class="roadmap-title" style="margin:1rem 0 0.5rem;">
+            Test 03: High-Performer Friction
+          </h3>
+          <p class="mono" style="font-size:11px;color:var(--ag1-emerald-dark);font-weight:700;">
+            Concept 03: &ldquo;For people who still feel off.&rdquo;
+          </p>
+        </div>
+
+        <div class="roadmap-rationale">
+          <strong>Strategic Rationale:</strong> Expands market penetration beyond celebrity fans into disciplined everyday achievers who have high disposable income and will subscribe for 12+ months once they associate AG1 with mental focus and cellular energy recovery.
+        </div>
+
+        <div class="mono" style="padding:8px 12px;background:var(--bg-alt);border:1px solid #000;font-size:11px;">
+          KPI Focus: 60-Day Subscriber Retention &bull; High-AOV Upsells
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       12 — FINAL STRATEGIC TAKEAWAY & EDITORIAL CONCLUSION
+       ══════════════════════════════════════════════════════════════════ -->
+  <section id="takeaway" class="takeaway-editorial-section">
+    <div class="container">
+      
+      <span class="insight-badge mono">STRATEGIC CONCLUSION &bull; IDRIS HIBBI</span>
+
+      <blockquote class="editorial-quote-massive">
+        &ldquo;AG1 doesn’t necessarily need more reasons to believe. It needs more reasons to <em>care.</em>&rdquo;
+      </blockquote>
+
+      <p style="font-size:15px;color:#374151;max-width:58ch;margin:0 auto;line-height:1.6;">
+        Clinical claims and celebrity endorsements built AG1 into an iconic nine-figure brand. But to sustain scale in an era of hyper-critical consumers, the creative system must evolve:
+      </p>
+
+      <div class="takeaway-vector-row mono">
+        <span class="vector-step">AUTHORITY</span>
+        <span>&rarr;</span>
+        <span class="vector-step active">MECHANISM</span>
+        <span>&rarr;</span>
+        <span class="vector-step">IDENTITY</span>
+        <span>&rarr;</span>
+        <span class="vector-step active">TENSION</span>
+        <span>&rarr;</span>
+        <span class="vector-step">DESIRE</span>
+      </div>
+
+      <div class="mono" style="font-size:12px;border:1.5px solid #000;background:var(--bg-alt);padding:14px 20px;max-width:680px;margin:0 auto 2.5rem;line-height:1.5;">
+        <strong>RECOMMENDATION FOR AG1 CREATIVE LEADERSHIP:</strong><br>
+        Greenlight a rapid 2-week testing sprint using Concept 01 (Mechanism Animation) and Concept 02 (Stack Replacement Reframe). Allocate 15% of top-of-funnel testing budget to validate hook retention and unlock fresh algorithmic audiences before Q4.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FOOTER STRIP & PORTFOLIO INTEGRATION
+       ══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer-action-strip mono" role="contentinfo">
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.16em;margin-bottom:4px;">
+        IDRIS HIBBI &bull; PERFORMANCE CREATIVE STRATEGIST
+      </div>
+      <div style="font-size:11px;opacity:0.7;">
+        AG1 Deep Creative Strategy Teardown &bull; Independent DTC Analysis &bull; October 2026
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="https://calendly.com/idris-copywriter/the-idris-meeting" target="_blank" rel="noopener noreferrer" class="footer-cta-btn">
+        <span>BOOK A 30-MIN STRATEGY CALL &rarr;</span>
+      </a>
+      <a href="/index.html#work" style="color:#fff;text-decoration:underline;font-size:11px;padding:8px 12px;">
+        Return to Portfolio Index
+      </a>
+    </div>
+  </footer>
+
+  <!-- Toast Notification for Hook Copy Action -->
+  <div id="toastPill" class="toast-pill mono" role="status" aria-live="polite">
+    COPIED TO CLIPBOARD &check;
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       INTERACTIVE JAVASCRIPT: SMOOTH SCROLL, COPY HOOKS, TABS
+       ══════════════════════════════════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. Copy-to-Clipboard Functionality for Hooks
+      const toast = document.getElementById('toastPill');
+      const copyButtons = document.querySelectorAll('.copy-hook-btn');
+
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const textToCopy = btn.getAttribute('data-copy');
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(textToCopy);
+            } else {
+              const tempInput = document.createElement('textarea');
+              tempInput.value = textToCopy;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
+            }
+            
+            // Visual feedback on button
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>COPIED &check;</span>';
+            btn.style.backgroundColor = 'var(--ag1-emerald)';
+            
+            // Show Toast
+            if (toast) {
+              toast.textContent = `HOOK COPIED: "${textToCopy}"`;
+              toast.classList.add('show');
+              setTimeout(() => {
+                toast.classList.remove('show');
+              }, 2500);
+            }
+
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.style.backgroundColor = '';
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy: ', err);
+          }
+        });
+      });
+
+      // 2. Interactive Customer Language Category Filters
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const quoteCards = document.querySelectorAll('.quote-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const category = btn.getAttribute('data-filter');
+          quoteCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 3. Loom Trigger Notice
+      const loomTrigger = document.getElementById('loomPreviewTrigger');
+      if (loomTrigger) {
+        loomTrigger.addEventListener('click', () => {
+          if (toast) {
+            toast.textContent = "TEARDOWN DECK: 90-sec Loom walkthrough recorded for HR & Founder scan.";
+            toast.classList.add('show');
+            setTimeout(() => {
+              toast.classList.remove('show');
+            }, 3000);
+          }
+        });
+      }
+
+      // 4. Scroll-Spy for Smart Sticky Navigation
+      const navTabs = document.querySelectorAll('.nav-tab');
+      const sections = document.querySelectorAll('section[id]');
+
+      function updateActiveTab() {
+        const scrollPosition = window.scrollY + 140;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navTabs.forEach(tab => {
+              tab.classList.remove('active');
+              if (tab.getAttribute('href') === `#${sectionId}`) {
+                tab.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveTab, { passive: true });
+      updateActiveTab();
+    });
+  </script>
+
+</body>
+</html>
