@@ -3776,5 +3776,276 @@ button {
   }
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   AG1 FEATURED COVER CARD (PORTFOLIO SHOWCASE)
+   Brand Aesthetic: Deep AG1 Forest (#0a2e20), Emerald (#00e676), Cinematic Dark
+   ══════════════════════════════════════════════════════════════════ */
+.ag1-featured-cover-wrap {
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
 
+.ag1-cover-card {
+  display: block;
+  position: relative;
+  background: #060b08;
+  border: 1.5px solid rgba(0, 230, 118, 0.22);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--transition-smooth), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 230, 118, 0.08);
+}
 
+.ag1-cover-card:hover {
+  border-color: rgba(0, 230, 118, 0.7);
+  box-shadow: 0 24px 64px -12px rgba(0, 230, 118, 0.28), 0 0 28px rgba(0, 230, 118, 0.16);
+  transform: translateY(-4px);
+}
+
+.ag1-cover-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1024 / 682;
+  overflow: hidden;
+  background: #060b08;
+}
+
+.ag1-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ag1-cover-card:hover .ag1-cover-img {
+  transform: scale(1.025);
+}
+
+.ag1-cover-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 75% 35%, transparent 45%, rgba(6, 11, 8, 0.4) 100%);
+  opacity: 0.6;
+  transition: opacity var(--transition-base);
+}
+
+.ag1-cover-card:hover .ag1-cover-vignette {
+  opacity: 0.35;
+}
+
+/* Subtle Top-Right Live Badge */
+.ag1-cover-badge-top {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(6, 11, 8, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  border-radius: var(--radius-full);
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+
+.ag1-cover-card:hover .ag1-cover-badge-top {
+  border-color: rgba(0, 230, 118, 0.65);
+  background: rgba(10, 46, 32, 0.9);
+}
+
+.ag1-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00e676;
+  box-shadow: 0 0 8px #00e676;
+  animation: pulse-ring 2.2s infinite ease-in-out;
+}
+
+.ag1-badge-txt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* Interactive Hover Indicator for "VIEW TEARDOWN →" */
+.ag1-cover-hover-indicator {
+  position: absolute;
+  bottom: 8.5%;
+  left: 6.2%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background: rgba(6, 11, 8, 0.8);
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0.85;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.ag1-indicator-arrow {
+  display: inline-block;
+  color: #00e676;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.ag1-cover-card:hover .ag1-cover-hover-indicator {
+  opacity: 1;
+  color: #000000;
+  background: #00e676;
+  border-color: #00e676;
+  box-shadow: 0 0 24px rgba(0, 230, 118, 0.6);
+  transform: translateY(-2px);
+}
+
+.ag1-cover-card:hover .ag1-indicator-arrow {
+  color: #000000;
+  transform: translateX(5px);
+}
+
+/* Mobile-Optimized Editorial Typography Bar (Hidden on Desktop, Visible on Small Screens) */
+.ag1-cover-mobile-meta {
+  display: none;
+  padding: 1.5rem;
+  background: #09120c;
+  border-top: 1px solid rgba(0, 230, 118, 0.2);
+}
+
+@media (max-width: 640px) {
+  .ag1-cover-mobile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ag1-meta-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ag1-meta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #00e676;
+    background: rgba(0, 230, 118, 0.12);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+  }
+
+  .ag1-meta-read-time {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  .ag1-meta-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .ag1-meta-title .ag1-meta-sub {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    display: block;
+    margin-top: 0.15rem;
+  }
+
+  .ag1-meta-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ag1-meta-pills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0.25rem 0;
+  }
+
+  .ag1-meta-pill-dot {
+    color: #00e676;
+  }
+
+  .ag1-meta-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #00e676;
+    margin-top: 0.35rem;
+    transition: transform var(--transition-fast);
+  }
+
+  .ag1-cover-card:hover .ag1-meta-cta {
+    transform: translateX(4px);
+    color: #ffffff;
+  }
+
+  .ag1-cover-badge-top {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .ag1-badge-txt {
+    font-size: 0.65rem;
+  }
+
+  .ag1-cover-hover-indicator {
+    display: none; /* Mobile uses .ag1-meta-cta */
+  }
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
