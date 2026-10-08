@@ -347,33 +347,16 @@
       opacity: 1;
     }
 
-    /* ── 3. HERO SECTION ── */
+    /* ── 3. HERO SECTION (CENTERED VIDEO SHOWCASE) ── */
     .hero-grid {
-      display: grid;
-      grid-template-columns: 12fr;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    @media (min-width: 992px) {
-      .hero-grid {
-        grid-template-columns: 7fr 5fr;
-      }
-    }
-
-    .hero-content-col {
-      padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 3vw, 2rem);
+      background: radial-gradient(circle at 50% 30%, rgba(0, 230, 118, 0.06) 0%, transparent 70%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: radial-gradient(circle at 10% 20%, rgba(0, 230, 118, 0.05) 0%, transparent 60%);
-    }
-
-    @media (min-width: 992px) {
-      .hero-content-col {
-        border-bottom: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-      }
+      width: 100%;
     }
 
     .hero-eyebrow {
@@ -504,28 +487,33 @@
       color: var(--ag1-emerald);
     }
 
-    /* Hero Right Side: Media Box & Big Takeaway */
+    /* Hero Centered Showcase: Video & Big Takeaway */
     .hero-media-col {
-      background: var(--bg-alt);
-      padding: clamp(1.5rem, 3.5vw, 2.75rem);
+      background: transparent;
+      padding: 0;
+      width: 100%;
+      max-width: 880px;
       display: flex;
       flex-direction: column;
-      gap: 1.75rem;
-      justify-content: center;
+      gap: 1.5rem;
+      align-items: center;
+      margin: 0 auto;
     }
 
     .loom-preview-box {
+      width: 100%;
+      max-width: 880px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 14px;
       background: #0c0d12;
-      aspect-ratio: 16/10;
+      aspect-ratio: 16/9;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 22px;
+      padding: clamp(16px, 3vw, 24px);
       color: var(--text-primary);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -2114,62 +2102,14 @@
        ══════════════════════════════════════════════════════════════════ -->
   <section id="hero" class="hero-grid">
     
-    <!-- Left Column: Big Statement & Narrative -->
-    <div class="hero-content-col">
-      <div>
-        <div class="hero-eyebrow">
-          <span class="insight-badge mono">INSIGHT #1</span>
-          <span class="eyebrow-text mono">AG1 CREATIVE SYSTEM SCAN</span>
-          <span class="status-pill emerald mono" style="font-size:10px;">OCTOBER 2026 INTEL</span>
-        </div>
-
-        <h1 class="hero-title">
-          Most AG1 ads
-          <span class="italic-sub">sell authority.</span>
-          They forgot to
-          <span class="highlight-pill">sell mechanism.</span>
-        </h1>
-
-        <p class="hero-subhead">
-          How AG1 sells a daily health ritual — and where its creative system is starting to show acute fatigue after 7+ months of continuous rotation.
-        </p>
-
-        <!-- Rigorous Research Metadata -->
-        <div class="hero-meta-strip mono">
-          <div class="hero-meta-row">
-            <span class="hero-meta-label">Audit Date:</span>
-            <span>October 2026</span>
-            <span style="opacity:0.4;">|</span>
-            <span class="hero-meta-label">Audited Platform:</span>
-            <span>Meta Ad Library (page_id: 183869772601)</span>
-          </div>
-          <div class="hero-meta-row">
-            <span class="hero-meta-label">Data Sources:</span>
-            <span>Meta Ads, Amazon Verified Reviews, Reddit (r/AthleticGreens, r/Biohackers), TikTok, drinkag1.com</span>
-          </div>
-          <div class="hero-meta-row">
-            <span class="hero-meta-label">Lead Strategist:</span>
-            <span>Idris Hibbi &bull; Performance Creative Strategist</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tactical Diagnosis Tags -->
-      <div class="hero-chips-wrap mono">
-        <div class="hero-chip dark">AUTHORITY OVERLOAD: 68% OF DETECTED SPEND</div>
-        <div class="hero-chip emerald">MECHANISM GAP = CONVERSION LEAK</div>
-        <div class="hero-chip">PRICE/VALUE OBJECTION UNTOUCHED</div>
-      </div>
-    </div>
-
-    <!-- Right Column: Interactive Video Preview & Big Takeaway -->
+    <!-- Centered Video Walkthrough & Big Takeaway -->
     <div class="hero-media-col">
       
-      <!-- Video / Loom Placeholder Box -->
+      <!-- Video / Loom Placeholder Box (Centered in the Middle) -->
       <div class="loom-preview-box" id="loomPreviewTrigger" title="Play Teardown Summary Walkthrough">
         <div class="loom-grid-bg"></div>
         <div class="loom-header-row mono">
-          <span style="background:#000;border:1px solid rgba(255,255,255,0.3);padding:2px 8px;">LOOM &bull; 1:30</span>
+          <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.25);padding:2px 8px;border-radius:4px;">LOOM &bull; 1:30</span>
           <span style="opacity:0.6;">OCT 2026 REC</span>
         </div>
 
@@ -2181,7 +2121,7 @@
           <div class="mono" style="color:var(--ag1-emerald);font-size:11px;font-weight:700;margin-bottom:4px;letter-spacing:0.12em;">
             TEARDOWN WALKTHROUGH
           </div>
-          <div style="font-size:22px;font-weight:800;line-height:1;text-transform:uppercase;letter-spacing:-0.02em;">
+          <div style="font-size:clamp(16px, 2.5vw, 22px);font-weight:800;line-height:1.15;text-transform:uppercase;letter-spacing:-0.02em;">
             3 HOOKS TIRED.<br>
             3 GAPS OPEN.<br>
             5 CONCEPTS READY TO TEST.
@@ -2193,13 +2133,13 @@
         </div>
       </div>
 
-      <div style="display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;font-weight:700;" class="mono">
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:10px;text-transform:uppercase;font-weight:700;" class="mono">
         <span>Click to scan summary &bull; Pure signal</span>
-        <span style="text-decoration:underline;cursor:pointer;">90-SEC BRIEFING &rarr;</span>
+        <span style="text-decoration:underline;cursor:pointer;color:var(--ag1-emerald);">90-SEC BRIEFING &rarr;</span>
       </div>
 
       <!-- THE BIG TAKEAWAY -->
-      <div class="big-takeaway-card">
+      <div class="big-takeaway-card" style="width:100%;">
         <div class="takeaway-badge-strip">
           <span class="takeaway-tag mono">THE BIG TAKEAWAY</span>
           <span class="mono" style="font-size:10px;opacity:0.6;">EXECUTIVE SYNTHESIS</span>
