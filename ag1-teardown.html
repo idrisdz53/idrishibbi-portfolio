@@ -813,90 +813,236 @@
       }
     }
 
-    /* Ad Creative Showcase for Verified Meta Creatives */
+    /* Ad Creative Showcase for Verified Meta Creatives (All 3 Photos Displayed) */
     .ad-creative-showcase {
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       background: #09090d;
       overflow: hidden;
       margin-bottom: 1.5rem;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
     .ad-creative-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 9px 14px;
+      padding: 10px 14px;
       background: rgba(255, 255, 255, 0.04);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 10.5px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .ad-creative-stage {
+    .ad-verified-tag {
+      color: var(--ag1-emerald);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .ad-verified-tag .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ag1-emerald);
+      box-shadow: 0 0 8px var(--ag1-emerald);
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* 3-Photo Bento Gallery */
+    .ad-photos-gallery {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      gap: 8px;
+      padding: 10px;
+      background: #0a0e0c;
+      box-sizing: border-box;
+      min-height: 330px;
+    }
+
+    .ad-photos-gallery.view-stacked {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .ad-photo-frame {
       position: relative;
-      width: 100%;
-      height: 310px;
-      background: #0e120f;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #050706;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: zoom-in;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 12px;
     }
 
-    .ad-creative-img {
-      max-width: 100%;
-      max-height: 100%;
+    .ad-photo-frame:hover {
+      border-color: rgba(0, 230, 118, 0.55);
+      box-shadow: 0 8px 24px rgba(0, 230, 118, 0.15);
+      transform: translateY(-2px);
+      z-index: 2;
+    }
+
+    .ad-photo-frame img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      display: block;
+      transition: transform 0.3s ease;
     }
 
-    .ad-format-nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      padding: 8px 10px;
-      background: rgba(16, 16, 21, 0.85);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .ad-photo-frame:hover img {
+      transform: scale(1.02);
     }
 
-    .format-pill {
-      font-family: var(--font-mono);
-      font-size: 10px;
+    /* Primary tall vertical frame (9:16) */
+    .frame-story {
+      height: 100%;
+      min-height: 310px;
+    }
+
+    .ad-photos-gallery.view-stacked .frame-story {
+      height: 480px;
+    }
+
+    /* Right column stack for 1:1 and 16:9 */
+    .ad-photo-stack-right {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .ad-photos-gallery.view-stacked .ad-photo-stack-right {
+      gap: 12px;
+    }
+
+    .frame-feed {
+      flex: 1.15;
+      min-height: 165px;
+    }
+
+    .ad-photos-gallery.view-stacked .frame-feed {
+      height: 380px;
+      flex: none;
+    }
+
+    .frame-banner {
+      flex: 0.85;
+      min-height: 115px;
+    }
+
+    .ad-photos-gallery.view-stacked .frame-banner {
+      height: 220px;
+      flex: none;
+    }
+
+    /* Photo micro-badge */
+    .photo-format-badge {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(8, 12, 10, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #e5e5e5;
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 6px 4px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
+      letter-spacing: 0.08em;
+      padding: 3px 6px;
+      border-radius: 4px;
+      pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .photo-format-badge::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--ag1-emerald);
+    }
+
+    .photo-zoom-hint {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      color: var(--text-muted);
+      font-size: 9px;
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .ad-photo-frame:hover .photo-zoom-hint {
+      opacity: 1;
+    }
+
+    /* Format Switcher / View Controls */
+    .ad-format-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(16, 18, 16, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ad-view-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text-secondary);
       cursor: pointer;
-      text-align: center;
       transition: all 0.2s ease;
-      white-space: nowrap;
     }
 
-    .format-pill.active,
-    .format-pill:hover {
-      background: rgba(0, 230, 118, 0.15);
-      border-color: rgba(0, 230, 118, 0.45);
+    .ad-view-toggle-btn:hover,
+    .ad-view-toggle-btn.active {
+      background: rgba(0, 230, 118, 0.12);
+      border-color: rgba(0, 230, 118, 0.4);
       color: var(--ag1-emerald);
     }
 
+    /* Destination Link */
     .ad-destination-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       background: rgba(0, 230, 118, 0.06);
-      border-top: 1px solid rgba(0, 230, 118, 0.15);
+      border-top: 1px solid rgba(0, 230, 118, 0.18);
       font-size: 10px;
       font-weight: 600;
       color: var(--text-primary);
@@ -905,8 +1051,117 @@
     }
 
     .ad-destination-link:hover {
-      background: rgba(0, 230, 118, 0.12);
+      background: rgba(0, 230, 118, 0.14);
       color: var(--ag1-emerald);
+    }
+
+    /* Lightbox Modal */
+    .ad-lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+    .lightbox-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .lightbox-dialog {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      background: #0c0f0d;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      z-index: 10;
+    }
+    .lightbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+    .lightbox-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0 4px;
+      transition: color 0.2s ease;
+    }
+    .lightbox-close-btn:hover {
+      color: var(--ag1-emerald);
+    }
+    .lightbox-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050706;
+      padding: 1rem;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .lightbox-body img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .lightbox-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 10.5px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .ad-photos-gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .frame-story {
+        height: 380px;
+      }
+      .frame-feed {
+        height: 280px;
+        flex: none;
+      }
+      .frame-banner {
+        height: 160px;
+        flex: none;
+      }
     }
 
     .ad-visual-mock {
@@ -2327,32 +2582,53 @@
       <!-- Ad 01 -->
       <article class="ad-card">
         
-        <!-- Verified Meta Creative Showcase (3 Formats) -->
+        <!-- Verified Meta Creative Showcase (ALL 3 PHOTOS DISPLAYED SIMULTANEOUSLY) -->
         <div class="ad-creative-showcase">
           <div class="ad-creative-header mono">
             <span style="font-weight:700;">ID: 1603630744310905</span>
-            <span style="color:var(--ag1-emerald);display:inline-flex;align-items:center;gap:5px;">
-              <span style="width:6px;height:6px;border-radius:50%;background:var(--ag1-emerald);display:inline-block;box-shadow:0 0 6px var(--ag1-emerald);"></span>
-              <span>VERIFIED META ASSET</span>
+            <span class="ad-verified-tag">
+              <span class="pulse-dot"></span>
+              <span>3 VERIFIED META CREATIVES</span>
             </span>
           </div>
 
-          <!-- Creative Stage (Live Image Preview) -->
-          <div class="ad-creative-stage">
-            <img id="ad1MainImage" class="ad-creative-img" src="/assets/ag1-ad-1603630744310905-1x1.jpg" alt="AG1 Ad 1603630744310905 - Free Welcome Kit Offer ($72 Value)" loading="eager" />
+          <!-- All 3 Photos Rendered in Bento Grid -->
+          <div id="ad1Gallery" class="ad-photos-gallery">
+            <!-- 1. Vertical Story / Reel (9:16) -->
+            <div class="ad-photo-frame frame-story" onclick="openAdLightbox('/assets/ag1-ad-1603630744310905-9x16.jpg', '9:16 Story / Reel Format (Feb 2026)', 'Ready to upgrade your health routine? Most supplements aren’t backed by science. AG1 Next Gen is... FREE WELCOME KIT $72 VALUE')" title="Click to inspect 9:16 Story format full size">
+              <img src="/assets/ag1-ad-1603630744310905-9x16.jpg" alt="AG1 Ad 1603630744310905 - 9:16 Vertical Story / Reel" loading="eager" />
+              <div class="photo-format-badge mono">9:16 STORY</div>
+              <span class="photo-zoom-hint mono">&plus; ZOOM</span>
+            </div>
+
+            <!-- Right Column: Stacked 1:1 Feed & 16:9 Banner -->
+            <div class="ad-photo-stack-right">
+              <!-- 2. Square Feed (1:1) -->
+              <div class="ad-photo-frame frame-feed" onclick="openAdLightbox('/assets/ag1-ad-1603630744310905-1x1.jpg', '1:1 Square Feed Format (Feb 2026)', 'FREE WELCOME KIT $72 VALUE with 30-Day Supply')" title="Click to inspect 1:1 Feed format full size">
+                <img src="/assets/ag1-ad-1603630744310905-1x1.jpg" alt="AG1 Ad 1603630744310905 - 1:1 Square Feed" loading="eager" />
+                <div class="photo-format-badge mono">1:1 FEED</div>
+                <span class="photo-zoom-hint mono">&plus; ZOOM</span>
+              </div>
+
+              <!-- 3. Landscape Display Banner (16:9) -->
+              <div class="ad-photo-frame frame-banner" onclick="openAdLightbox('/assets/ag1-ad-1603630744310905-16x9.jpg', '16:9 Landscape Banner Format (Feb 2026)', 'FREE WELCOME KIT $72 VALUE — Shaker bottle, canister, scoop, D3+K2 drops, 5 travel packs')" title="Click to inspect 16:9 Banner format full size">
+                <img src="/assets/ag1-ad-1603630744310905-16x9.jpg" alt="AG1 Ad 1603630744310905 - 16:9 Landscape Banner" loading="eager" />
+                <div class="photo-format-badge mono">16:9 BANNER</div>
+                <span class="photo-zoom-hint mono">&plus; ZOOM</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Format Switcher: 1:1 Feed / 9:16 Story / 16:9 Banner -->
-          <div class="ad-format-nav mono" role="tablist" aria-label="Select creative aspect ratio">
-            <button type="button" class="format-pill active" data-src="/assets/ag1-ad-1603630744310905-1x1.jpg" role="tab" aria-selected="true" title="Square Feed Creative (1:1)">
-              <span>1:1 FEED</span>
-            </button>
-            <button type="button" class="format-pill" data-src="/assets/ag1-ad-1603630744310905-9x16.jpg" role="tab" aria-selected="false" title="Vertical Story & Reel Creative (9:16)">
-              <span>9:16 STORY</span>
-            </button>
-            <button type="button" class="format-pill" data-src="/assets/ag1-ad-1603630744310905-16x9.jpg" role="tab" aria-selected="false" title="Landscape Display Banner (16:9)">
-              <span>16:9 BANNER</span>
-            </button>
+          <!-- Format Summary Bar with View Switcher -->
+          <div class="ad-format-bar mono">
+            <span style="color:var(--text-secondary);display:inline-flex;align-items:center;gap:6px;">
+              <span style="color:var(--ag1-emerald);font-weight:700;">3/3 VISIBLE:</span>
+              <span>9:16 &bull; 1:1 &bull; 16:9</span>
+            </span>
+            <div style="display:flex;gap:4px;">
+              <button type="button" class="ad-view-toggle-btn active" id="btnBentoView" onclick="setAdGalleryView('bento')">BENTO</button>
+              <button type="button" class="ad-view-toggle-btn" id="btnStackedView" onclick="setAdGalleryView('stacked')">STACKED</button>
+            </div>
           </div>
 
           <!-- Live Destination URL -->
@@ -2378,7 +2654,7 @@
             <li><strong>HOOK:</strong> Pattern Interrupt + Clinical Science contrast</li>
             <li><strong>OFFER:</strong> $72 Free Welcome Kit (Shaker bottle + Metal canister + Scoop + D3+K2 + 5 Travel packs) with 30-Day Supply</li>
             <li><strong>PROOF:</strong> Clinically shown to fill nutrient gaps; upgraded probiotics</li>
-            <li><strong>CREATIVE ASSETS:</strong> 3 live aspect ratios verified in Meta Ad Library (1:1 Feed, 9:16 Story, 16:9 Banner)</li>
+            <li><strong>CREATIVE ASSETS:</strong> All 3 live aspect ratios displayed (9:16 Story, 1:1 Feed, 16:9 Banner)</li>
             <li><strong>STRATEGIC DIAGNOSIS:</strong> The primary evergreen workhorse. Leverages high-perceived-value physical freebies ($72 value) to offset the $100 price barrier for first-time subscribers.</li>
           </ul>
         </div>
@@ -3696,30 +3972,71 @@
         });
       }
 
-      // 5. Interactive Ad Format Switcher for Ad 1603630744310905
-      const formatPills = document.querySelectorAll('.format-pill');
-      const ad1MainImage = document.getElementById('ad1MainImage');
-      if (formatPills.length > 0 && ad1MainImage) {
-        formatPills.forEach(pill => {
-          pill.addEventListener('click', () => {
-            const src = pill.getAttribute('data-src');
-            if (src) {
-              ad1MainImage.style.opacity = '0.3';
-              setTimeout(() => {
-                ad1MainImage.src = src;
-                ad1MainImage.style.opacity = '1';
-              }, 120);
-            }
-            formatPills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-          });
-        });
-      }
+      // 5. Interactive View Switcher & Lightbox for Ad 1603630744310905
+      window.setAdGalleryView = function(view) {
+        const gallery = document.getElementById('ad1Gallery');
+        const btnBento = document.getElementById('btnBentoView');
+        const btnStacked = document.getElementById('btnStackedView');
+        if (!gallery) return;
+        if (view === 'stacked') {
+          gallery.classList.add('view-stacked');
+          btnStacked && btnStacked.classList.add('active');
+          btnBento && btnBento.classList.remove('active');
+        } else {
+          gallery.classList.remove('view-stacked');
+          btnBento && btnBento.classList.add('active');
+          btnStacked && btnStacked.classList.remove('active');
+        }
+      };
+
+      window.openAdLightbox = function(src, title, caption) {
+        const modal = document.getElementById('adCreativeLightbox');
+        const img = document.getElementById('lightboxImg');
+        const titleEl = document.getElementById('lightboxTitle');
+        const capEl = document.getElementById('lightboxCaption');
+        if (!modal || !img) return;
+        img.src = src;
+        if (titleEl && title) titleEl.textContent = 'AG1 Meta Creative • ' + title;
+        if (capEl && caption) capEl.textContent = caption;
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeAdLightbox = function() {
+        const modal = document.getElementById('adCreativeLightbox');
+        if (!modal) return;
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') window.closeAdLightbox();
+      });
 
       window.addEventListener('scroll', updateActiveTab, { passive: true });
       updateActiveTab();
     });
   </script>
 
+
+  <!-- Ad Creative Lightbox Modal -->
+  <div id="adCreativeLightbox" class="ad-lightbox-modal" aria-hidden="true" style="display:none;">
+    <div class="lightbox-overlay" onclick="closeAdLightbox()"></div>
+    <div class="lightbox-dialog">
+      <div class="lightbox-header mono">
+        <span id="lightboxTitle">AG1 Meta Creative &bull; ID: 1603630744310905</span>
+        <button type="button" class="lightbox-close-btn" onclick="closeAdLightbox()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightboxImg" src="" alt="Enlarged ad creative" />
+      </div>
+      <div class="lightbox-footer mono">
+        <span id="lightboxCaption" style="color:var(--text-secondary);">Format: 1:1 Feed Creative</span>
+        <a id="lightboxLink" href="https://drinkag1.com/best-green-powder-offers" target="_blank" rel="noopener noreferrer" style="color:var(--ag1-emerald);text-decoration:underline;">drinkag1.com/best-green-powder-offers &nearr;</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
