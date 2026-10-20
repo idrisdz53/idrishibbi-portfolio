@@ -4521,3 +4521,19 @@ button {
     justify-content: center;
   }
 }
+
+
+/* Hero VSL Integration (Headline + Direct Loom Video) */
+.hero-vsl-section {
+  min-height: auto;
+  padding-top: calc(var(--nav-height) + 2.5rem);
+  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.hero-vsl-section .hero-subhead {
+  margin-bottom: clamp(1.75rem, 3.2vw, 2.75rem);
+}
+
+.hero-vsl-section .loom-vsl-card {
+  width: 100%;
+}
