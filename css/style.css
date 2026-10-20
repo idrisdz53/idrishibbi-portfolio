@@ -1129,45 +1129,6 @@ button {
 }
 
 
-/* ── 11. STRATEGIC FOCUS (SKILLS) ── */
-.skills-tags-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.skill-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
-  padding: 0.65rem 1.25rem;
-  transition: all var(--transition-fast);
-}
-
-.skill-chip:hover {
-  border-color: var(--accent-gold);
-  background: var(--bg-surface-elevated);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px var(--accent-gold-glow);
-}
-
-.chip-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent-gold);
-}
-
-.chip-text {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 0.02em;
-}
 
 /* ── 11. ABOUT SECTION ── */
 .about-card {
