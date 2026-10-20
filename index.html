@@ -35,7 +35,7 @@
   <div id="scroll-progress" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       HEADER & NAVIGATION (PROJECTS | CREATIVE LIBRARY | CLIENT WORK | ABOUT | CONTACT)
+       HEADER & NAVIGATION (ABOUT | PROJECTS | CREATIVE LIBRARY | CLIENT WORK | CONTACT)
        ═══════════════════════════════════════════════════════════ -->
   <header class="site-header" role="banner">
     <div class="container nav-wrapper">
@@ -52,12 +52,12 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Links: Projects | Creative Library | Client Work | About | Contact -->
+      <!-- Desktop Navigation Links: About | Projects | Creative Library | Client Work | Contact -->
       <nav class="nav-links" id="nav-links" role="navigation" aria-label="Primary Navigation">
+        <a href="#about" class="nav-link">About</a>
         <a href="#work" class="nav-link">Projects</a>
         <a href="#creative-library" class="nav-link">Creative Library</a>
         <a href="#client-work" class="nav-link">Client Work</a>
-        <a href="#about" class="nav-link">About</a>
         <a href="#contact" class="nav-link">Contact</a>
         <a href="https://calendly.com/idris-copywriter/the-idris-meeting" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm mobile-nav-cta">Book a Call</a>
       </nav>
@@ -137,10 +137,13 @@
 
           <!-- Primary & Secondary CTAs -->
           <div class="hero-cta-group">
-            <a href="#work" class="btn btn-primary">
-              <span>View My Work &darr;</span>
+            <a href="#about" class="btn btn-primary">
+              <span>Watch Video (2 min) &darr;</span>
             </a>
-            <a href="https://calendly.com/idris-copywriter/the-idris-meeting" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <a href="#work" class="btn btn-secondary">
+              <span>View Projects</span>
+            </a>
+            <a href="https://calendly.com/idris-copywriter/the-idris-meeting" target="_blank" rel="noopener noreferrer" class="btn btn-secondary hero-book-btn">
               <span>Book a Call</span>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -149,9 +152,199 @@
         </div>
       </div>
     </section>
+    <!-- ───────────────────────────────────────────────────────────
+         02 — ABOUT IDRIS & LOOM STRATEGY VIDEO (SALES VSL)
+         ─────────────────────────────────────────────────────────── -->
+    <section id="about" class="section about-section loom-vsl-section" aria-label="About Idris Hibbi — Creative Strategy Video">
+      <div class="container">
+        
+        <div class="section-header reveal text-center">
+          <div class="section-tag">Video Walkthrough &bull; Creative Strategy</div>
+          <h2 class="section-title">How I Turn Customer Insights Into Ads That Scale</h2>
+          <p class="section-subtitle">
+            A 2-minute walkthrough on how I audit DTC ad accounts, uncover competitor blindspots, and architect high-converting paid social creative.
+          </p>
+        </div>
+
+        <!-- LOOM VIDEO VSL PLAYER CONTAINER -->
+        <div class="loom-vsl-card reveal">
+          
+          <!-- Loom Browser / Recording Header Bar -->
+          <div class="loom-header-bar">
+            <div class="loom-header-left">
+              <span class="loom-rec-indicator">
+                <span class="loom-rec-dot"></span>
+                <span class="loom-rec-text">REC</span>
+              </span>
+              <span class="loom-header-divider"></span>
+              <div class="loom-header-title-wrap">
+                <span class="loom-header-title">Idris Hibbi &bull; Creative Strategy Walkthrough</span>
+                <span class="loom-header-badge">LOOM VSL</span>
+              </div>
+            </div>
+            <div class="loom-header-right">
+              <span class="loom-meta-pill">02:15 MIN</span>
+              <span class="loom-meta-pill loom-pill-hd">1080p HD</span>
+            </div>
+          </div>
+
+          <!-- Video Player & Interactive Screen Frame -->
+          <div class="loom-screen-wrap" id="loom-player-wrap">
+            
+            <!-- Loom Embedded Iframe (Ready for Your Loom URL) -->
+            <!-- TO EMBED YOUR ACTUAL LOOM VIDEO: Paste your Loom share/embed link into the src below:
+                 e.g. src="https://www.loom.com/embed/YOUR_LOOM_VIDEO_ID" -->
+            <iframe 
+              id="loom-iframe" 
+              class="loom-iframe"
+              src="" 
+              data-loom-url="https://www.loom.com/embed/"
+              title="Idris Hibbi — Performance Creative Strategy Loom Walkthrough"
+              frameborder="0" 
+              webkitallowfullscreen 
+              mozallowfullscreen 
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              style="display: none;"
+            ></iframe>
+
+            <!-- Interactive Loom Poster Overlay -->
+            <div class="loom-poster" id="loom-poster">
+              <!-- Dark Cinematic Studio Grid & Ambient Lighting -->
+              <div class="loom-poster-bg">
+                <div class="loom-bg-glow"></div>
+                <div class="loom-bg-grid-overlay"></div>
+              </div>
+              
+              <!-- Floating Loom Bubble (Iconic circular presenter bubble) -->
+              <div class="loom-presenter-bubble">
+                <div class="loom-bubble-avatar-frame">
+                  <img src="assets/idris-hibbi.jpg" alt="Idris Hibbi — Performance Creative Strategist" class="loom-bubble-avatar">
+                  <span class="loom-bubble-pulse"></span>
+                </div>
+                <div class="loom-bubble-info">
+                  <span class="loom-bubble-name">Idris Hibbi</span>
+                  <span class="loom-bubble-role">Presenter &bull; Creative Strategist</span>
+                </div>
+              </div>
+
+              <!-- Center Big Play Button with Pulse Aura -->
+              <div class="loom-play-trigger-wrap" id="loom-play-btn" role="button" tabindex="0" aria-label="Play 2-Minute Strategy Video">
+                <div class="loom-play-pulse-ring"></div>
+                <div class="loom-play-pulse-ring-outer"></div>
+                <div class="loom-play-btn">
+                  <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <polygon points="6,3 20,12 6,21"></polygon>
+                  </svg>
+                </div>
+                <div class="loom-play-labels">
+                  <span class="loom-play-headline">Watch 2-Min Strategy Video</span>
+                  <span class="loom-play-subtext">Click to start interactive walkthrough &rarr;</span>
+                </div>
+              </div>
+
+              <!-- Bottom Bar with Video Controls Mockup -->
+              <div class="loom-player-controls-bar">
+                <div class="loom-controls-left">
+                  <span class="loom-ctrl-btn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="6,3 20,12 6,21"></polygon></svg>
+                  </span>
+                  <span class="loom-time-display">0:00 / 2:15</span>
+                </div>
+                <div class="loom-progress-track">
+                  <div class="loom-progress-fill"></div>
+                </div>
+                <div class="loom-controls-right">
+                  <span class="loom-speed-pill">1x</span>
+                  <span class="loom-ctrl-btn" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Sales Page Bio Narrative & Value Propositions -->
+          <div class="loom-sales-body">
+            
+            <div class="loom-bio-block">
+              <div class="loom-bio-header">
+                <div class="loom-bio-avatar-sm">
+                  <img src="assets/idris-hibbi.jpg" alt="Idris Hibbi" class="bio-avatar-img">
+                </div>
+                <div>
+                  <h3 class="loom-sales-heading">The Strategy Behind The Ads</h3>
+                  <div class="loom-author-tagline">Idris Hibbi &bull; Performance Creative Strategist &bull; Remote (Global)</div>
+                </div>
+              </div>
+              <div class="loom-bio-text">
+                <p>
+                  I am a <strong>Performance Creative Strategist</strong> with serious strategic practice and a strong focus on paid social creative for DTC brands.
+                </p>
+                <p>
+                  In modern algorithmic advertising, creative is the primary targeting lever. Most brands burn budget running the same tired angles until acute fatigue sets in. My focus centers on customer research, mining consumer sentiment in reviews and forums, breaking down competitor creative in the Meta Ad Library, and developing structured concepts ready for testing.
+                </p>
+                <p>
+                  I am interested in creative strategy, ad concepting, and performance marketing opportunities with forward-thinking growth teams and DTC brands globally.
+                </p>
+              </div>
+            </div>
+
+            <!-- 3 Core Sales Pillars -->
+            <div class="loom-pillars-grid">
+              <div class="loom-pillar-card">
+                <div class="pillar-number">01</div>
+                <h4 class="pillar-title">Customer Sentiment Mining</h4>
+                <p class="pillar-desc">
+                  Mining real Reddit threads, Amazon reviews, and community comments to isolate objections, emotional friction, and high-converting hooks.
+                </p>
+              </div>
+
+              <div class="loom-pillar-card">
+                <div class="pillar-number">02</div>
+                <h4 class="pillar-title">Meta Ad Library Audits</h4>
+                <p class="pillar-desc">
+                  Tracking competitors' longest-running ads, identifying angle saturation, and finding open creative whitespace.
+                </p>
+              </div>
+
+              <div class="loom-pillar-card">
+                <div class="pillar-number">03</div>
+                <h4 class="pillar-title">Test-Ready Production Briefs</h4>
+                <p class="pillar-desc">
+                  Delivering structured 9:16 video scripts, static split-panels, direct-response copy, and clear testing hypotheses for media buyers.
+                </p>
+              </div>
+            </div>
+
+            <!-- Sales Page Conversion CTA Bar -->
+            <div class="loom-sales-cta-bar">
+              <div class="sales-cta-message">
+                <span class="sales-status-badge"></span>
+                <span>Available for Q4/2026 DTC Strategic Projects &bull; Remote (Global)</span>
+              </div>
+              <div class="sales-cta-actions">
+                <a href="https://calendly.com/idris-copywriter/the-idris-meeting" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  <span>Book a 1-on-1 Strategy Call</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#work" class="btn btn-secondary">
+                  <span>Explore Case Studies Below &darr;</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
 
     <!-- ───────────────────────────────────────────────────────────
-         02 — PROJECTS (CASE STUDY CARDS WITH VISUAL PREVIEWS)
+         03 — PROJECTS (CASE STUDY CARDS WITH VISUAL PREVIEWS)
          ─────────────────────────────────────────────────────────── -->
     <section id="work" class="section work-section" aria-label="Projects">
       <div class="container">
@@ -794,82 +987,7 @@
     </section>
 
     <!-- ───────────────────────────────────────────────────────────
-         04 — ABOUT IDRIS & EXPERIENCE
-         ─────────────────────────────────────────────────────────── -->
-    <section id="about" class="section about-section" aria-label="About Idris">
-      <div class="container">
-        
-        <div class="section-header reveal">
-          <div class="section-tag">Background</div>
-          <h2 class="section-title">About Idris</h2>
-        </div>
-
-        <div class="about-card reveal">
-          
-          <!-- Portrait Frame -->
-          <div class="about-portrait-col">
-            <div class="about-portrait-frame">
-              <img src="assets/idris-hibbi.jpg" alt="Idris Hibbi — Performance Creative Strategist" class="about-portrait-img">
-              <div class="about-portrait-overlay">
-                <span class="about-portrait-name">Idris Hibbi</span>
-                <span class="about-portrait-role">Performance Creative Strategist</span>
-                <div class="about-portrait-status">
-                  <span class="status-dot"></span>
-                  <span>Algeria &bull; Available for Remote (Global)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bio Narrative & Experience -->
-          <div class="about-content-col">
-            
-            <div class="about-text-col">
-              <p>
-                I am a <strong>Performance Creative Strategist</strong> with serious strategic practice and a strong focus on paid social creative for DTC brands.
-              </p>
-              <p>
-                In modern algorithmic advertising, creative is the primary targeting lever. My focus centers on customer research, mining consumer sentiment in reviews and forums, breaking down competitor creative in the Meta Ad Library, and developing structured concepts ready for testing.
-              </p>
-              <p>
-                I am interested in creative strategy, ad concepting, and performance marketing opportunities with forward-thinking growth teams and DTC brands globally.
-              </p>
-            </div>
-
-            <!-- Concise Recruiter-Friendly Experience Block -->
-            <div class="experience-block">
-              <h3 class="experience-title">Experience &amp; Practice</h3>
-              
-              <div class="experience-item">
-                <div class="exp-role-row">
-                  <span class="exp-role">Direct Response Copywriter</span>
-                  <span class="exp-type">Independent / Project Work</span>
-                </div>
-                <p class="exp-desc">
-                  Conducting in-depth customer review mining and crafting direct-response copy, hooks, and messaging frameworks for paid acquisition.
-                </p>
-              </div>
-
-              <div class="experience-item">
-                <div class="exp-role-row">
-                  <span class="exp-role">Creative Strategy</span>
-                  <span class="exp-type">Independent Projects</span>
-                </div>
-                <p class="exp-desc">
-                  Performing Meta Ad Library competitive audits, isolating messaging fatigue, and architecting structured creative testing roadmaps for DTC brands.
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ───────────────────────────────────────────────────────────
-         05 — CONTACT ("LET'S WORK TOGETHER")
+         06 — CONTACT ("LET'S WORK TOGETHER")
          ─────────────────────────────────────────────────────────── -->
     <section id="contact" class="section contact-section" aria-label="Let's Work Together">
       <div class="container">
@@ -1097,10 +1215,10 @@
           <span class="footer-nav-title">Navigation</span>
           <div class="footer-links-grid">
             <a href="#hero" class="footer-link">Home</a>
+            <a href="#about" class="footer-link">About Idris</a>
             <a href="#work" class="footer-link">Projects</a>
             <a href="#creative-library" class="footer-link">Creative Library</a>
             <a href="#client-work" class="footer-link">Client Work</a>
-            <a href="#about" class="footer-link">About Idris</a>
             <a href="#contact" class="footer-link">Contact</a>
           </div>
         </nav>

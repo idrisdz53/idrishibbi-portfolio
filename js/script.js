@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInquiryForm();
   initCreativeLibrary();
   initClientProofModal();
+  initLoomVideo();
 });
 
 /* ── 1. THEME TOGGLE (DARK MODE DEFAULT WITH PERSISTENCE) ── */
@@ -627,3 +628,79 @@ function initClientProofModal() {
 }
 
 
+
+
+/* ── LOOM VIDEO INTERACTIVITY & EMBED HANDLER ── */
+function initLoomVideo() {
+  const playBtn = document.getElementById('loom-play-btn');
+  const poster = document.getElementById('loom-poster');
+  const iframe = document.getElementById('loom-iframe');
+  if (!playBtn || !poster || !iframe) return;
+
+  const handlePlay = (e) => {
+    if (e) e.stopPropagation();
+    const currentSrc = (iframe.getAttribute('src') || '').trim();
+    
+    // If a valid Loom URL has been populated
+    if (currentSrc && currentSrc !== '' && !currentSrc.endsWith('/embed/')) {
+      poster.style.opacity = '0';
+      poster.style.pointerEvents = 'none';
+      setTimeout(() => {
+        poster.style.display = 'none';
+        iframe.style.display = 'block';
+        if (!iframe.src.includes('autoplay=1')) {
+          const sep = iframe.src.includes('?') ? '&' : '?';
+          iframe.src = iframe.src + sep + 'autoplay=1';
+        }
+      }, 350);
+    } else {
+      // Show elegant toast/modal for user guidance
+      showLoomSetupToast();
+    }
+  };
+
+  playBtn.addEventListener('click', handlePlay);
+  poster.addEventListener('click', handlePlay);
+  
+  playBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handlePlay(e);
+    }
+  });
+}
+
+function showLoomSetupToast() {
+  let toast = document.getElementById('loom-toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'loom-toast-notification';
+    toast.innerHTML = `
+      <div style="position:fixed;bottom:24px;right:24px;max-width:380px;background:#0d1117;border:1px solid var(--accent-gold);border-radius:12px;padding:16px 20px;box-shadow:0 12px 35px rgba(0,0,0,0.6);z-index:99999;font-family:var(--font-sans);color:#fff;animation:slideInUp 0.3s ease;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--accent-gold);text-transform:uppercase;letter-spacing:0.05em;">Loom Embed Ready</span>
+          <button id="close-loom-toast" style="background:none;border:none;color:#94a3b8;font-size:16px;cursor:pointer;line-height:1;">&times;</button>
+        </div>
+        <p style="font-size:13px;line-height:1.5;color:#cbd5e1;margin:0 0 10px 0;">
+          To connect your actual Loom video, paste your Loom embed link into the <code style="font-family:var(--font-mono);color:var(--accent-gold);background:rgba(255,255,255,0.08);padding:2px 5px;border-radius:3px;">&lt;iframe id="loom-iframe" src="..."&gt;</code> in <code style="font-family:var(--font-mono);color:#38bdf8;">index.html</code>.
+        </p>
+        <div style="font-size:11px;color:#94a3b8;font-family:var(--font-mono);">
+          Format: https://www.loom.com/embed/YOUR_VIDEO_ID
+        </div>
+      </div>
+    `;
+    document.body.appendChild(toast);
+    
+    document.getElementById('close-loom-toast').addEventListener('click', () => {
+      toast.remove();
+    });
+    
+    setTimeout(() => {
+      if (document.body.contains(toast)) {
+        toast.style.transition = 'opacity 0.4s ease';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+      }
+    }, 6500);
+  }
+}
