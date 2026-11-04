@@ -641,17 +641,17 @@ function initLoomVideo() {
     if (e) e.stopPropagation();
     const currentSrc = (iframe.getAttribute('src') || '').trim();
     
-    // If a valid Loom URL has been populated
+    // If a valid video URL has been populated
     if (currentSrc && currentSrc !== '' && !currentSrc.endsWith('/embed/')) {
+      iframe.style.display = 'block';
+      if (!iframe.src.includes('autoplay=1')) {
+        const sep = iframe.src.includes('?') ? '&' : '?';
+        iframe.src = iframe.src + sep + 'autoplay=1';
+      }
       poster.style.opacity = '0';
       poster.style.pointerEvents = 'none';
       setTimeout(() => {
         poster.style.display = 'none';
-        iframe.style.display = 'block';
-        if (!iframe.src.includes('autoplay=1')) {
-          const sep = iframe.src.includes('?') ? '&' : '?';
-          iframe.src = iframe.src + sep + 'autoplay=1';
-        }
       }, 350);
     } else {
       // Show elegant toast/modal for user guidance
