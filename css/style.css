@@ -3699,24 +3699,12 @@ button {
    ══════════════════════════════════════════════════════════════════ */
 .featured-teardowns-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
   margin-bottom: 2.25rem;
-  max-width: 1200px;
+  max-width: 1080px;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media (max-width: 960px) {
-  .featured-teardowns-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .featured-teardowns-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .teardown-cover-card,
@@ -3833,6 +3821,39 @@ button {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.55);
 }
 
+/* 4. Cloud Nine Angles Brand Styling */
+.card-cloudnine-angles {
+  background: #06050e;
+  border: 1.5px solid rgba(129, 140, 248, 0.22);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(129, 140, 248, 0.08);
+}
+
+.card-cloudnine-angles:hover {
+  border-color: rgba(129, 140, 248, 0.75);
+  box-shadow: 0 18px 48px -10px rgba(129, 140, 248, 0.26), 0 0 24px rgba(129, 140, 248, 0.16);
+  transform: translateY(-4px);
+}
+
+.vignette-cloudnine-angles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 75% 35%, transparent 45%, rgba(6, 5, 14, 0.4) 100%);
+  opacity: 0.6;
+  transition: opacity var(--transition-base);
+}
+
+.card-cloudnine-angles:hover .vignette-cloudnine-angles {
+  opacity: 0.35;
+}
+
+.indicator-cloudnine-angles {
+  background: #818cf8;
+  border: 1px solid #818cf8;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(129, 140, 248, 0.55);
+}
+
 /* Shared Media & Image Container (Aspect 1024x682) */
 .teardown-cover-media,
 .ag1-cover-media {
@@ -3920,6 +3941,11 @@ button {
   border-top: 1px solid rgba(168, 85, 247, 0.2);
 }
 
+.meta-cloudnine-angles {
+  background: #0a0815;
+  border-top: 1px solid rgba(129, 140, 248, 0.2);
+}
+
 .meta-top-row,
 .ag1-meta-top-row {
   display: flex;
@@ -3956,6 +3982,12 @@ button {
   color: #c084fc;
   background: rgba(168, 85, 247, 0.12);
   border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.tag-cloudnine-angles {
+  color: #c7d2fe;
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.3);
 }
 
 .meta-title,
@@ -4018,6 +4050,10 @@ button {
   color: #c084fc;
 }
 
+.meta-cloudnine-angles .meta-pill-dot {
+  color: #818cf8;
+}
+
 .meta-cta,
 .ag1-meta-cta {
   display: inline-flex;
@@ -4060,10 +4096,19 @@ button {
   color: #ffffff;
 }
 
-@media (max-width: 960px) {
+.cta-cloudnine-angles {
+  color: #a5b4fc;
+}
+
+.card-cloudnine-angles:hover .cta-cloudnine-angles {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+@media (max-width: 860px) {
   .featured-teardowns-grid {
     grid-template-columns: 1fr;
-    max-width: 560px;
+    max-width: 540px;
   }
 }
 
