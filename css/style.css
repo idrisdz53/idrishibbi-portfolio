@@ -3699,12 +3699,24 @@ button {
    ══════════════════════════════════════════════════════════════════ */
 .featured-teardowns-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-bottom: 2.25rem;
-  max-width: 1040px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (max-width: 960px) {
+  .featured-teardowns-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-teardowns-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .teardown-cover-card,
@@ -3786,6 +3798,39 @@ button {
   border: 1px solid #38bdf8;
   color: #000000;
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
+}
+
+/* 3. Cloud Nine Brand Styling */
+.card-cloudnine {
+  background: #090710;
+  border: 1.5px solid rgba(168, 85, 247, 0.22);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(168, 85, 247, 0.08);
+}
+
+.card-cloudnine:hover {
+  border-color: rgba(168, 85, 247, 0.75);
+  box-shadow: 0 18px 48px -10px rgba(168, 85, 247, 0.26), 0 0 24px rgba(168, 85, 247, 0.16);
+  transform: translateY(-4px);
+}
+
+.vignette-cloudnine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 75% 35%, transparent 45%, rgba(9, 7, 16, 0.4) 100%);
+  opacity: 0.6;
+  transition: opacity var(--transition-base);
+}
+
+.card-cloudnine:hover .vignette-cloudnine {
+  opacity: 0.35;
+}
+
+.indicator-cloudnine {
+  background: #a855f7;
+  border: 1px solid #a855f7;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.55);
 }
 
 /* Shared Media & Image Container (Aspect 1024x682) */
@@ -3870,6 +3915,11 @@ button {
   border-top: 1px solid rgba(56, 189, 248, 0.2);
 }
 
+.meta-cloudnine {
+  background: #0d0a14;
+  border-top: 1px solid rgba(168, 85, 247, 0.2);
+}
+
 .meta-top-row,
 .ag1-meta-top-row {
   display: flex;
@@ -3900,6 +3950,12 @@ button {
   color: #38bdf8;
   background: rgba(56, 189, 248, 0.12);
   border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.tag-cloudnine {
+  color: #c084fc;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
 .meta-title,
@@ -3958,6 +4014,10 @@ button {
   color: #38bdf8;
 }
 
+.meta-cloudnine .meta-pill-dot {
+  color: #c084fc;
+}
+
 .meta-cta,
 .ag1-meta-cta {
   display: inline-flex;
@@ -3991,10 +4051,19 @@ button {
   color: #ffffff;
 }
 
-@media (max-width: 860px) {
+.cta-cloudnine {
+  color: #c084fc;
+}
+
+.card-cloudnine:hover .cta-cloudnine {
+  transform: translateX(4px);
+  color: #ffffff;
+}
+
+@media (max-width: 960px) {
   .featured-teardowns-grid {
     grid-template-columns: 1fr;
-    max-width: 520px;
+    max-width: 560px;
   }
 }
 
