@@ -2340,7 +2340,8 @@ button {
    ========================================================================== */
 .creative-library-section {
   position: relative;
-  border-top: 1px solid var(--border-color);
+  border-top: none;
+  padding-top: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 /* Control Bar: Brand Filter Tabs & Meta Status Badge */
@@ -3697,11 +3698,15 @@ button {
    FEATURED CREATIVE STRATEGY TEARDOWNS GRID (AG1 + GYMSHARK)
    Compact 2-Column Responsive Portfolio Showcase (Small Size)
    ══════════════════════════════════════════════════════════════════ */
+.work-section {
+  padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
+}
+
 .featured-teardowns-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
-  margin-bottom: 2.25rem;
+  margin-bottom: 0;
   max-width: 1080px;
   margin-left: auto;
   margin-right: auto;
