@@ -2338,9 +2338,11 @@ button {
 /* ==========================================================================
    03.5 — CREATIVE LIBRARY (META AD LIBRARY SHOWCASE)
    ========================================================================== */
-.creative-library-section {
+.creative-library-section,
+#creative-library {
   position: relative;
-  border-top: none;
+  border-top: none !important;
+  border: none !important;
   padding-top: clamp(2rem, 3.5vw, 3.5rem);
 }
 
@@ -3698,7 +3700,9 @@ button {
    FEATURED CREATIVE STRATEGY TEARDOWNS GRID (AG1 + GYMSHARK)
    Compact 2-Column Responsive Portfolio Showcase (Small Size)
    ══════════════════════════════════════════════════════════════════ */
-.work-section {
+.work-section,
+#work {
+  border-bottom: none !important;
   padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
 }
 
