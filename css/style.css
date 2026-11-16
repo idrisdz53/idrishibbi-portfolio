@@ -2342,8 +2342,10 @@ button {
 #creative-library {
   position: relative;
   border-top: none !important;
+  border-bottom: none !important;
   border: none !important;
   padding-top: clamp(2rem, 3.5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 /* Control Bar: Brand Filter Tabs & Meta Status Badge */
@@ -3083,9 +3085,12 @@ button {
 /* ==========================================================================
    03.75 — CLIENT WORK (VERIFIED UPWORK CLIENT PROOF)
    ========================================================================== */
-.client-work-section {
+.client-work-section,
+#client-work {
   position: relative;
-  border-top: 1px solid var(--border-color);
+  border-top: none !important;
+  border: none !important;
+  padding-top: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 .client-work-grid {
